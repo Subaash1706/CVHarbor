@@ -5,7 +5,7 @@ function InwardList(props) {
     const { listItems } = props
   return (
     <ul className={classes.inwardList}>
-        { listItems.map((ele)=><li>{ele}</li>) }
+        { listItems.map((ele, ind)=><li key={ind}>{ele}</li>) }
     </ul>
   )
 }

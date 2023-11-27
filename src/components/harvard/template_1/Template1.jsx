@@ -11,7 +11,6 @@ import InwardList from '../../cv_components/inward_list/InwardList'
 
 const Template1 = React.forwardRef((props, ref)=>{
   return (
-    <A4Container>
         <A4sheet ref={ref}>
 
             <div className={classes.templateLayout}>
@@ -54,10 +53,15 @@ const Template1 = React.forwardRef((props, ref)=>{
                     <TitleDate title='Job role' date='MM/YYYY - MM/YYYY'/>
                     <InwardList listItems={['Achievement 1', 'Achievement 2', 'Achievement 3', 'Achievement 4']}/>
                 </section>
+                {/* Certifications */}
+                <section>
+                    <Heading style={{'fontWeight': '550', 'fontSize': '14px','margin': '1rem 0px'}} centered='true'>Certifications</Heading>
+                    <Hr />
+                    <InwardList listItems = {['Certification 1', 'Certification 2', 'Certification 3', 'Certification 4']}/>
+                </section>
             </div>
 
         </A4sheet>
-    </A4Container>
   )
 })
 

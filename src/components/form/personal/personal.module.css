@@ -1,0 +1,30 @@
+.personalContainer{
+    font-family: 'Poppins';
+    /* border: solid; */
+    padding: 4rem;
+    /* border-radius: 25px; */
+}
+.personalContainer input{
+    font-size: 1.5rem;
+    padding: 8px;
+    margin: 8px 15px 15px 15px;
+    border-radius: 6px;
+    border: 1px solid gray;
+}
+.personalContainer label{
+    margin-left: 15px;
+    font-size: 1.05rem;
+    color: gray;
+}
+.personalContainer button{
+    font-size: 1.5rem;
+    padding: 10px 45px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+.heading{
+    font-size: 3rem;
+    margin-left: 15px;
+}

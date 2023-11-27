@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { useReactToPrint } from 'react-to-print'
 import './App.css'
-import Template1 from './components/harvard/template_1/Template1'
+import Navbar from './components/navbar/Navbar'
+import Main from './components/Main'
 
 function App() {
   const componentRef = useRef()
@@ -10,8 +11,12 @@ function App() {
   })
   return (
     <div>
-      <button onClick={handlePrint}>Print</button>
-      <Template1 ref = {componentRef} />
+      <Navbar />
+      <Main />
+      {/* <button onClick={handlePrint}>Print</button> */}
+      {/* <A4Container>
+        <Template1 ref = {componentRef} />
+      </A4Container> */}
     </div>
   )
 }

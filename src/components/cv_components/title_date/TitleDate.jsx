@@ -4,7 +4,7 @@ import FlexBox from '../flexbox/FlexBox'
 function TitleDate(props) {
     const { title, date } = props
   return (
-    <FlexBox style={{'flexDirection': 'row', 'justifyContent': 'space-between'}}>
+    <FlexBox style={{'justifyContent': 'space-between'}} direction = 'row'>
         <p>{title}</p>
         <p>{date}</p>
     </FlexBox>
