@@ -1,0 +1,16 @@
+.contactContainer span{
+    font-size: 11px;
+}
+.templateLayout{
+    max-width: 85%;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.achievements li{
+    list-style-position: inside;
+}
+.skills{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    list-style-position: inside;
+}
