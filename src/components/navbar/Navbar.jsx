@@ -8,8 +8,8 @@ import xpSvg from '../../assets/svg/work_FILL1_wght400_GRAD0_opsz24.svg'
 import addMoreSvg from '../../assets/svg/add_circle_FILL1_wght400_GRAD0_opsz24.svg'
 
 function Navbar(props) {
-    function hoverHandleFunction(e){
-        console.log( 'hov');
+    function navClickHandler(e){
+        props.onItemChoose(e.target.id);
     }
   return (
     <nav className={classes.navbarContainer}>
@@ -17,11 +17,11 @@ function Navbar(props) {
             CV.Harbor
         </div>
         <ul className={classes.navUl}>
-            <NavItem name={ personSvg } checked={true} id='Personal info' />
-            <NavItem name={ educationSvg } id='Education' />
-            <NavItem name={ skillSvg } id='Skills' />
-            <NavItem name={ xpSvg } id='Experience' />
-            <NavItem name={ addMoreSvg } id='Add more' />
+            <NavItem name={ personSvg } checked={true} id='Personal info' onClick={ navClickHandler }/>
+            <NavItem name={ educationSvg } id='Education' onClick={ navClickHandler }/>
+            <NavItem name={ skillSvg } id='Skills' onClick={ navClickHandler }/>
+            <NavItem name={ xpSvg } id='Experience' onClick={ navClickHandler }/>
+            <NavItem name={ addMoreSvg } id='Add more' onClick={ navClickHandler }/>
         </ul>
     </nav>
   )

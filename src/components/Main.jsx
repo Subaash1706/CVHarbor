@@ -12,7 +12,7 @@ const Main = React.forwardRef((props, ref)=>{
       })
   return (
     <main>
-        <Form />
+        <Form onItemChoose = { props.chosenItem }/>
         {/* <button onClick={handlePrint}>print</button> */}
         <A4Container>
             <Template1 ref = { componentRef.current }/>

@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 13px;
+    scrollbar-gutter: stable;
 }
 @media print {
     .printable{
@@ -14,4 +15,50 @@
 }
 hr{
     margin-bottom: 6px;
+}
+.formSectionContainer .heading{
+    font-size: 3rem;
+    /* margin-left: 15px; */
+    /* border: solid; */
+    position: fixed;
+    left: 0px;
+    top: 6rem;
+    background: linear-gradient(to right, bisque 65%, transparent 95%);
+}
+.formSectionContainer{
+    font-family: 'Poppins';
+    /* border: solid; */
+    padding: 4rem;
+    /* border-radius: 25px; */
+}
+.formSectionContainer input, .formSectionContainer select{
+    font-size: 1.5rem;
+    padding: 8px;
+    margin: 8px 0px 15px 0px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    width: 90%;
+
+}
+.formSectionContainer option{
+    font-size: 1.25rem;
+    padding: 5px;
+}
+.formSectionContainer input[type='checkbox']{
+    scale: 1.75;
+    vertical-align: middle;
+}
+.formSectionContainer label{
+    /* margin-left: 15px; */
+    font-size: 1.05rem;
+    color: gray;
+    text-wrap: nowrap;
+}
+.formSectionContainer button{
+    font-size: 1.5rem;
+    padding: 10px 45px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    cursor: pointer;
+    margin: 16px;
 }

@@ -5,9 +5,9 @@ import LabelInput from '../form_components/LabelInput'
 
 function PersonalInfo() {
   return (
-    <div className={classes.personalContainer}>
-        <div className={classes.heading}>Personal Info</div>
-        <FlexBox>
+    <div className='formSectionContainer'>
+        <div className='heading'>Personal Info</div>
+        <FlexBox style={{alignItems: 'start'}}>
             <FlexBox direction='row'>
                 <LabelInput id='firstName' labelName='First Name' placeholder='First name'/>
                 <LabelInput id='lastName' labelName='Last Name' placeholder='Last name'/>
