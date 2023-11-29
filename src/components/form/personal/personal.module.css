@@ -23,6 +23,7 @@
     border-radius: 10px;
     border: 1px solid gray;
     cursor: pointer;
+    background-color: orangered;
 }
 .heading{
     font-size: 3rem;

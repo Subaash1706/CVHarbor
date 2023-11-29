@@ -33,10 +33,10 @@ function Education(props) {
                 <input type='checkbox' id='current' onChange={change}/>
                 <label htmlFor="current" style={{'marginLeft': '1rem'}}>Currently studying</label>
             </FlexBox>
-            <FlexBox direction='row'>
-                <button>Back</button>
-                <button>Proceed</button>
-            </FlexBox>
+        </FlexBox>
+        <FlexBox direction='row'>
+            <button>Back</button>
+            <button>Proceed</button>
         </FlexBox>
     </div>
 

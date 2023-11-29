@@ -1,26 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from './personal.module.css'
 import FlexBox from '../../cv_components/flexbox/FlexBox'
 import LabelInput from '../form_components/LabelInput'
+import { useDispatch, useSelector } from 'react-redux'
+import { bioActions } from '../../store/store'
 
 function PersonalInfo() {
+    const dispatch = useDispatch()
+    const [ personalInfo, setPersonalInfo ] = useState({name: '', secondName: '', email: '', phone: '', linkedIn: ''})
+    function valueChangeHandler(e){
+        setPersonalInfo(prev=>{return{...prev, [e.target.name]: e.target.value}})
+    }
+    function submitHandler(e){
+        e.preventDefault()
+        dispatch(bioActions.updateBioData({ personal: personalInfo }))
+        // console.log(personalInfo)
+    }
   return (
     <div className='formSectionContainer'>
         <div className='heading'>Personal Info</div>
-        <FlexBox style={{alignItems: 'start'}}>
-            <FlexBox direction='row'>
-                <LabelInput id='firstName' labelName='First Name' placeholder='First name'/>
-                <LabelInput id='lastName' labelName='Last Name' placeholder='Last name'/>
+            <FlexBox style={{alignItems: 'start'}}>
+                <FlexBox direction='row'>
+                    <LabelInput id='firstName' labelName='First Name' placeholder='First name' name='name' onChange={ valueChangeHandler } value={ personalInfo.name }/>
+                    <LabelInput id='lastName' labelName='Last Name' placeholder='Last name' name='secondName' onChange={ valueChangeHandler } value={ personalInfo.secondName }/>
+                </FlexBox>
+                <FlexBox direction='row'>
+                    <LabelInput id='email' labelName='Email' placeholder='Email' name='email' onChange={ valueChangeHandler } value={ personalInfo.email }/>
+                    <LabelInput id='phone' labelName='Phone' placeholder='Phone' name='phone' onChange={ valueChangeHandler } value={ personalInfo.phone }/>
+                </FlexBox>
+                <FlexBox direction='row'>
+                    <LabelInput id='linkedIn' labelName='LinkedIn link' placeholder='LinkedIn' name='linkedIn' onChange={ valueChangeHandler } value={ personalInfo.linkedIn }/>
+                </FlexBox>
             </FlexBox>
-            <FlexBox direction='row'>
-                <LabelInput id='email' labelName='Email' placeholder='Email'/>
-                <LabelInput id='phone' labelName='Phone' placeholder='Phone' />
-            </FlexBox>
-            <FlexBox direction='row'>
-                <LabelInput id='linkedIn' labelName='LinkedIn link' placeholder='LinkedIn'/>
-            </FlexBox>
-            <button className={classes.proceed}>Proceed</button>
-        </FlexBox>
+        <center>
+            <button className={classes.proceed} onClick={submitHandler}>Proceed</button>
+        </center>
     </div>
   )
 }

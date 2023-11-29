@@ -3,6 +3,8 @@ import { useReactToPrint } from 'react-to-print'
 import './App.css'
 import Navbar from './components/navbar/Navbar'
 import Main from './components/Main'
+import store from './components/store/store'
+import { Provider } from 'react-redux'
 
 function App(props) {
   const [ chosenNavItem, setChosenNavItem ] = useState('');
@@ -14,14 +16,16 @@ function App(props) {
     setChosenNavItem(e)
   }
   return (
-    <div>
-      <Navbar onItemChoose = { itemChooseHandler }/>
-      <Main chosenItem = { chosenNavItem }/>
-      {/* <button onClick={handlePrint}>Print</button> */}
-      {/* <A4Container>
-        <Template1 ref = {componentRef} />
-      </A4Container> */}
-    </div>
+    <Provider store={store}>
+      <div>
+        <Navbar onItemChoose = { itemChooseHandler }/>
+        <Main chosenItem = { chosenNavItem }/>
+        {/* <button onClick={handlePrint}>Print</button> */}
+        {/* <A4Container>
+          <Template1 ref = {componentRef} />
+        </A4Container> */}
+      </div>
+    </Provider>
   )
 }
 
