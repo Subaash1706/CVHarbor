@@ -8,13 +8,14 @@ import { bioActions } from '../../store/store'
 function PersonalInfo() {
     const dispatch = useDispatch()
     const [ personalInfo, setPersonalInfo ] = useState({name: '', secondName: '', email: '', phone: '', linkedIn: ''})
+    const [ validity, setValidity ] = useState(false)
     function valueChangeHandler(e){
         setPersonalInfo(prev=>{return{...prev, [e.target.name]: e.target.value}})
+        setValidity(Object.values(personalInfo).every(Boolean))
     }
     function submitHandler(e){
         e.preventDefault()
         dispatch(bioActions.updateBioData({ personal: personalInfo }))
-        // console.log(personalInfo)
     }
   return (
     <div className='formSectionContainer'>
@@ -33,7 +34,10 @@ function PersonalInfo() {
                 </FlexBox>
             </FlexBox>
         <center>
-            <button className={classes.proceed} onClick={submitHandler}>Proceed</button>
+            <button className={classes.proceed} onClick={submitHandler} disabled={!validity}>Save</button>
+        </center>
+        <center className='nextContainer'>
+            <button className='nextSection' >Next Section</button>
         </center>
     </div>
   )

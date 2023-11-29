@@ -1,0 +1,18 @@
+.number{
+    position: absolute;
+    right: 0;
+    font-size: 5rem;
+    background-color: turquoise;
+    height: 102%;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addMoreButton{
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+.addMoreButton:hover{
+    text-decoration: underline;
+}

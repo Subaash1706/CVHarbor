@@ -1,6 +1,5 @@
 import React from 'react'
 import A4sheet from '../../cv_components/a4/A4sheet'
-import A4Container from '../../cv_components/a4/A4Container'
 import Heading from '../../cv_components/heading/Heading'
 import SubHeading from '../../cv_components/subheading/SubHeading'
 import FlexBox from '../../cv_components/flexbox/FlexBox'
@@ -34,9 +33,12 @@ const Template1 = React.forwardRef((props, ref)=>{
                     return(
                         <section key={index}>
                             <SubHeading style={{'fontWeight': '550', 'fontSize':'13px'}}>{ item.name }</SubHeading>
-                            <TitleDate title='Course Name' date='MM/YYYY'/>
-                            <p>Cgpa { item.grade }</p>
-                            <InwardList listItems={ item.accomplishments }/>
+                            <TitleDate 
+                                title={ `${item.course}, ${item.stream}`}
+                                date={`${item.start_date.split('-')[0]}-${item.end_date.includes('-') ? item.end_date.split('-')[0]: item.end_date}`}
+                             />
+                            <p>{ item.grade } {item.selector === 'GPA' ? 'CGPA' : '%'} </p>
+                            {item.accomplishments && <InwardList listItems={ item.accomplishments }/>}
                         </section>
                     )
                 })}
@@ -60,8 +62,8 @@ const Template1 = React.forwardRef((props, ref)=>{
                     return(
                     <section key={ind}>
                         <SubHeading style={{'fontWeight': '550', 'fontSize':'13px'}}>{ item.name }</SubHeading>
-                        <TitleDate title={ item.role } date={`${item.start_date}-${item.end_date}`}/>
-                        <InwardList listItems={ item.accomplishments }/>
+                        <TitleDate title={ item.role } date={`${item.start_date.split('-')[0]}-${item.end_date.includes('-') ? item.end_date.split('-')[0]: item.end_date}`}/>
+                        {item.accomplishments && <InwardList listItems={ item.accomplishments }/>}
                     </section>
                     )
                 })}

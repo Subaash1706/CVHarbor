@@ -27,7 +27,6 @@ hr{
 }
 .formSectionContainer{
     font-family: 'Poppins';
-    /* border: solid; */
     padding: 4rem;
     /* border-radius: 25px; */
 }
@@ -61,4 +60,12 @@ hr{
     border: 1px solid gray;
     cursor: pointer;
     margin: 16px;
+}
+.nextContainer{
+    /* border: solid; */
+    position: fixed;
+    bottom: 0;
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.451);
+    backdrop-filter: blur(5px);
 }

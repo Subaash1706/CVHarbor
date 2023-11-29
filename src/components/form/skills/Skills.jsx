@@ -28,8 +28,8 @@ function Skills(props) {
         Add more
       </a>
       <FlexBox direction='row'>
-                <button>Back</button>
-                <button>Proceed</button>
+          <button>Back</button>
+          <button>Proceed</button>
       </FlexBox>
     </div>
   );
