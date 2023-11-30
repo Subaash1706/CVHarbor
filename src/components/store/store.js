@@ -11,11 +11,24 @@ const dummyXpDetails = [
     { name: 'Company name 2', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: ['Achievement 1', 'Achievement 2', 'Achievement 3'] }
 ]
 
+const formPage = ['Personal Info', 'Education', 'Skills', 'Experience', 'Additional']
+let currentIndex = 0;
 
 function updateBioData(state, action){
     const [key] = Object.keys(action.payload)
     const [value] = Object.values(action.payload)
     return {...state, data: {...state.data, [key]: [...state.data[key], value]}}
+}
+function updateCurrentPage(state, action){
+    const { direction, target } = action.payload;
+    if(direction){
+        if(direction === '1') currentIndex += 1
+        else if(direction === '-1') currentIndex-=1
+    }
+    else{
+        currentIndex = +target;
+    }
+    state.currentForm = formPage[currentIndex] 
 }
 
 const bioData = createSlice({
@@ -26,8 +39,8 @@ const bioData = createSlice({
         skills: [], 
         xp: [], 
         additional: []
-    }}, 
-    reducers:{ updateBioData }
+    }, currentForm: formPage[0]}, 
+    reducers:{ updateBioData, updateCurrentPage }
 })
 
 const store = configureStore( { reducer: { 'bioData': bioData.reducer } } )

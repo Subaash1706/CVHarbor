@@ -4,18 +4,20 @@ import classes from './form.module.css'
 import Education from './education/Education'
 import Skills from './skills/Skills'
 import Xp from './xp/Xp'
+import { useSelector } from 'react-redux'
 
 function Form(props) {
+  const currentPage = useSelector(state=>state.bioData.currentForm)
   const { onItemChoose:chosen } = props
   function submitHandler(e){
     e.preventDefault()
   }
   return (
     <form onSubmit={submitHandler}>
-        { chosen === 'Personal info' && <PersonalInfo /> }
-        { chosen === 'Education' && <Education /> }
-        { chosen === 'Skills' && <Skills />}
-        { chosen === 'Experience' && <Xp />}
+        { currentPage === 'Personal Info' && <PersonalInfo /> }
+        { currentPage === 'Education' && <Education /> }
+        { currentPage === 'Skills' && <Skills />}
+        { currentPage === 'Experience' && <Xp />}
     </form>
   )
 }

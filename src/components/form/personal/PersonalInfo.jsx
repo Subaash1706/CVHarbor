@@ -37,7 +37,7 @@ function PersonalInfo() {
             <button className={classes.proceed} onClick={submitHandler} disabled={!validity}>Save</button>
         </center>
         <center className='nextContainer'>
-            <button className='nextSection' >Next Section</button>
+            <button className='nextSection' onClick={()=>dispatch(bioActions.updateCurrentPage({direction: '1'}))}>Next Section</button>
         </center>
     </div>
   )

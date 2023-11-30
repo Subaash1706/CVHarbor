@@ -18,12 +18,10 @@ hr{
 }
 .formSectionContainer .heading{
     font-size: 3rem;
-    /* margin-left: 15px; */
-    /* border: solid; */
-    position: fixed;
+    /* position: fixed; 
     left: 0px;
     top: 6rem;
-    background: linear-gradient(to right, bisque 65%, transparent 95%);
+    background: linear-gradient(to right, bisque 65%, transparent 95%); */
 }
 .formSectionContainer{
     font-family: 'Poppins';
