@@ -23,6 +23,9 @@ hr{
     top: 6rem;
     background: linear-gradient(to right, bisque 65%, transparent 95%); */
 }
+.subHeading{
+    font-size: 1.75rem;
+}
 .formSectionContainer{
     font-family: 'Poppins';
     padding: 4rem;
