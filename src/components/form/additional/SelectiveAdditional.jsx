@@ -3,44 +3,43 @@ import FlexBox from '../../cv_components/flexbox/FlexBox'
 import CheckBoxLabel from '../form_components/CheckBoxLabel'
 import LabelInput from '../form_components/LabelInput'
 import LabelDate from '../form_components/LabelDate'
+import { useDispatch } from 'react-redux'
+import { bioActions } from '../../store/store'
 
 function SelectiveAdditional(props) {
-    // const [ isChecked, setisChecked ] = useState({
-    //     heading: false, 
-    //     date: false, 
-    //     description: false
-    // })
-    const obj = props.checkedArray.map((item, ind)=>{return{
-        [item]: {heading: false, date: false, description: false}
-    }})
-    const [ isChecked, setisChecked ] = useState(obj)
-    console.log(isChecked)
-    const [ value, setValue ] = useState({})
-    function valueChangeHandler(e){
-        setValue((prev)=>{return{...prev, [e.target.id]: e.target.value}})
+    const dispatch = useDispatch()
+    const initialState = 
+        props.checkedArray.map((item)=>{
+            return {[item]: [{heading: '', date: '', description: ''}]}
+            
+        })
+    const [ value, setValue ] = useState( initialState )
+    function valueChangeHandler(e, item, itemIndex) {
+        const { id, value: inputValue } = e.target;
+        setValue(prev=>{
+            const upd = [...prev];
+            upd[itemIndex][item][0][id]= inputValue
+            return upd
+        })
     }
-    function checkHandler(e, ind, item){
-        // setisChecked(prev=>{return{...prev, [prev[ind][item][e.target.id]]: e.target.checked}})
-        setisChecked(prev=>{return{...prev, [prev[ind]]: {[e.target.id]: e.target.checked}}})
+    function submitHandler(){
+        props.onAdditionalValue(value)
     }
-    console.log(isChecked)
   return ( <>
     { props.checkedArray.map((item,ind)=>{
         return(
             <FlexBox key={`${ind}_${item}`} style={{'alignItems': 'start', border: '1px solid gray', marginBottom: '2rem', padding: '2rem', 'borderRadius': '10px'}}>
-            <div className='subHeading'>{item}</div>
-            <FlexBox direction='row' width='100' style={{justifyContent: 'space-between', padding: '8px', marginBottom: '1rem', borderBottom: '1px solid gray'}}>
-                <CheckBoxLabel id='heading' labelName='Enable heading' name='heading' checked={(isChecked[ind])[item.heading]} onChange={(e)=>checkHandler(e, ind, item)}/>
-                <CheckBoxLabel id='date' labelName='Enable month year status' name='date' checked={(isChecked[ind])[item.date]}  onChange={(e)=>checkHandler(e, ind, item)}/>
-                <CheckBoxLabel id='description' labelName='Enable description' name='description' checked={(isChecked[ind])[item.description]} onChange={(e)=>checkHandler(e, ind, item)}/>
-            </FlexBox>
+            <div className='subHeading' style={{width: '100%', borderBottom: '1px solid gray', padding: '8px', 'marginBottom': '5px'}}>{item}</div>
             <FlexBox direction='row' width='100'>
-                <LabelInput id='Heading' labelName='Add a heading' name='Heading' disabled={!isChecked.heading} style={{}} onChange={valueChangeHandler}/>
-                <LabelDate id='Date' labelName='Month and Year of completion' name="Date" disabled={!isChecked.date} onChange={valueChangeHandler}/>
+                <LabelInput id='heading' labelName='Add a heading' name='Heading' onChange={(e)=>valueChangeHandler(e, item, ind)} value={value[ind][item][0]['heading']}/>
+                <LabelDate id='date' labelName='Month and Year of completion' name="Date" onChange={(e)=>valueChangeHandler(e, item, ind)} value={value[ind][item][0]['date']}/>
             </FlexBox >
             <FlexBox width='100'>
-                <textarea style={{width: '100%', height: '8rem', resize: 'none', padding: '8px', fontSize: '1.25rem'}}  placeholder='Enter a brief description. Use new line to create points' disabled={!isChecked.description} onChange={valueChangeHandler} id='description'></textarea>
+                <textarea style={{width: '100%', height: '8rem', resize: 'none', padding: '8px', fontSize: '1.25rem'}}  placeholder='Enter a brief description. Use new line to create points' onChange={(e)=>valueChangeHandler(e, item, ind)} id='description' value={value[ind][item][0]['description']}></textarea>
             </FlexBox>
+            <center style={{ width: '100%'}}>
+                <button onClick={submitHandler}>Save</button>
+            </center>
             <a style={{'fontSize': '1.25rem', 'cursor': 'pointer'}}>+Add more</a>
         </FlexBox>
         )

@@ -20,12 +20,19 @@ function Additional(props) {
     });
     const [ checkedArr, setCheckedArr ] = useState([])
     const [ proceedState, setProceedState ] = useState(false)
+    const [ additionalValue, setAdditionalValue ] = useState([])
     function checkChangeHandler(e){
         setisChecked(prev=>{return{...prev, [e.target.id]: e.target.checked}})
     }
     useEffect(()=>{
         setCheckedArr([...Object.keys(isChecked).filter((check)=>isChecked[check])])  
     }, [ isChecked ])
+    function additionalValueFn(data){
+        setAdditionalValue(data)
+    }
+    function submitHandler(){
+        console.log(additionalValue)
+    }
   return (
     <div className='formSectionContainer'>
         <div className="heading">Additional</div>
@@ -39,10 +46,11 @@ function Additional(props) {
             <CheckBoxLabel id='Volunteering' labelName='Volunteering' style={{color: 'black', fontSize: '1.25rem'}} onChange={checkChangeHandler} checked={isChecked.Volunteering}/>
         </FlexBox> }
         {
-            proceedState && <SelectiveAdditional checkedArray = { checkedArr }/>
+            proceedState && <SelectiveAdditional checkedArray = { checkedArr } onAdditionalValue={additionalValueFn}/>
         }
+
         <center>
-            <button onClick={()=>setProceedState(true)} disabled={!checkedArr.length > 0}>Proceed</button>
+            <button onClick={()=>{setProceedState(true);proceedState && submitHandler()}} disabled={!checkedArr.length> 0}>Proceed</button>
         </center>
 
         <center className='nextContainer'>
