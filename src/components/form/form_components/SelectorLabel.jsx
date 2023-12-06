@@ -1,11 +1,11 @@
 import React from 'react'
 import FlexBox from '../../cv_components/flexbox/FlexBox'
 
-function SelectorLabel({ options, id, labelName, onChange, name }) {
+function SelectorLabel({ options, id, labelName, onChange, name, defaultValue }) {
   return (
     <FlexBox style={{alignItems: 'start', 'flex': '1'}}>
         <label htmlFor={id}>{labelName}</label>
-        <select id={id} onChange={onChange} name={name}>
+        <select id={id} onChange={onChange} name={name} defaultValue={options[defaultValue]}>
             {options.map((item)=><option key={item}>{item}</option>)}
         </select>
     </FlexBox>

@@ -16,3 +16,26 @@
 .addMoreButton:hover{
     text-decoration: underline;
 }
+.editContainer{
+  position: absolute;
+  right:5rem;
+  bottom: 0;
+}
+.editContainer div{
+    display: inline-block;
+    padding: 5px;
+}
+.editContainer img{
+    border: 1px solid rgba(128, 128, 128, 0.177);
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.editContainer img:hover{
+    border: 1px solid transparent;
+    background: rgba(195, 195, 195, 0.519);
+}
+.editContainer img:active, .editContainer img:focus{
+    background: rgba(195, 195, 195, 0.765);
+    
+}

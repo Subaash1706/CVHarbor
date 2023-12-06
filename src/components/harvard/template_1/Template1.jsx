@@ -12,15 +12,35 @@ import { useSelector } from 'react-redux'
 
 const Template1 = React.forwardRef((props, ref)=>{
     const bio = useSelector(state=>state.bioData.data)
+    const dummyCertificationsArray = [ { name: 'Certification 1', date: 'YYYY/MM' }, { name: 'Certification 2', date: 'YYYY/MM'}]
     const personalInfo = bio.personal.length > 0 ? bio.personal[0] : dummyPersonalData
     const educationInfo = bio.education.length > 0 ? bio.education : dummyEducationData
     const skillsInfo = bio.skills.length > 0 ? bio.skills : dummySkills
     const xpInfo = bio.xp.length > 0 ? bio.xp : dummyXpDetails
+    const certificationsInfo = bio.certifications.length > 0 ? bio.certifications : dummyCertificationsArray;
+    const { personal, education, skills, xp, certifications, ...rest } = bio
+
+    function renderRest(obj){
+        const objKeys = Object.keys(obj)
+        return objKeys.map((item, ind)=>{
+            const heading = item.slice( 0, 1 ).toUpperCase() + item.slice( 1, item.length)
+            if(obj[item].length > 0){
+                // console.log('list', [ obj[item] ])
+                return ( 
+                    <div key={ind}>
+                        <Heading style={{'fontWeight': '550', 'fontSize': '14px','margin': '1rem 0px'}} centered='true'>{ heading }</Heading>
+                        <Hr />
+                        <InwardList listItems={ [obj[item]] } object = {true}/>
+                    </div>
+                    ) 
+            }
+        })
+    }
   return (
         <A4sheet ref={ref}>
             <div className={classes.templateLayout}>
                 <FlexBox style={{'margin': '1.5rem 0px'}}>
-                    <Heading style={{'fontWeight': '550', 'fontSize':'14px'}}>{ personalInfo.name }</Heading>
+                    <Heading style={{'fontWeight': '550', 'fontSize':'14px'}}>{ personalInfo.name }&nbsp;{personalInfo.secondName && personalInfo.secondName }</Heading>
                         <div className={classes.contactContainer}>
                             <span style={{'marginRight': '8px'}}>{ personalInfo.email }</span>
                             <span>{ personalInfo.phone }</span>
@@ -36,7 +56,7 @@ const Template1 = React.forwardRef((props, ref)=>{
                             <TitleDate 
                                 title={ `${item.course}, ${item.stream}`}
                                 date={`${item.start_date.split('-')[0]}-${item.end_date.includes('-') ? item.end_date.split('-')[0]: item.end_date}`}
-                             />
+                             />     
                             <p>{ item.grade } {item.selector === 'GPA' ? 'CGPA' : '%'} </p>
                             {item.accomplishments && <InwardList listItems={ item.accomplishments }/>}
                         </section>
@@ -45,10 +65,11 @@ const Template1 = React.forwardRef((props, ref)=>{
 
                 {/* Technical Skills */}
                 <section>
+                    { console.log(skillsInfo.flat(1))}
                     <Heading style={{'fontWeight': '550', 'fontSize': '14px','margin': '1rem 0px'}} centered='true'>Technical Skills</Heading>
                     <Hr />
                     <ul className={classes.skills}>
-                        { skillsInfo.map((item, ind)=>{
+                        { skillsInfo.flat(1).map((item, ind)=>{
                             return(
                                 <li key={ ind }>{ item }</li>
                             )
@@ -71,7 +92,11 @@ const Template1 = React.forwardRef((props, ref)=>{
                 <section>
                     <Heading style={{'fontWeight': '550', 'fontSize': '14px','margin': '1rem 0px'}} centered='true'>Certifications</Heading>
                     <Hr />
-                    <InwardList listItems = {['Certification 1', 'Certification 2', 'Certification 3', 'Certification 4']}/>
+                    <InwardList listItems = {[certificationsInfo]} object='true'/>
+                </section>
+                {/* {Others} */}
+                <section>
+                    { renderRest(rest) } 
                 </section>
             </div>
 

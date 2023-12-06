@@ -4,3 +4,15 @@
     cursor: pointer;
     padding: 5px;
 }
+.previewContainer{
+    margin: 0 3.5rem;
+}
+.previewWindow{
+    flex: 1;
+    border: 1px solid gray;
+    max-height: 30vh;
+    width: 15vw;
+    padding: 8px;
+    overflow-y: auto;
+    list-style-position: inside;
+}

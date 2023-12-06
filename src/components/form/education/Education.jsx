@@ -11,10 +11,13 @@ import ExistingData from '../existing_data/ExistingData'
 function Education(props) {
     const dispatch = useDispatch();
     const eduDataFromStorer = useSelector(state=>state.bioData.data.education)
+    // console.log('eduData', eduDataFromStorer)
     const [ currentEducation, setCurrentEducation ] = useState(false);
     const initialState = { name: '', course: '', stream: '', start_date: '', end_date: '', grade: ''}
     const [ addMore, setAddMore ] = useState(true);
-    const [ value, setValue ] = useState(initialState)
+    let [ value, setValue ] = useState(initialState)
+    const [ editableValue, setEditableValue ] = useState( initialState )
+    // const [ existing, setExisting ] = useState(false)
     const [ validity, setValidity ] = useState(false)
 
     function valueChangeHandler(e){
@@ -26,6 +29,10 @@ function Education(props) {
     function valueSelectionHandler(e){
         const selected = e.target.options[e.target.selectedIndex].value
         setValue(prev=>{return{...prev, [e.target.name]: selected}})
+        if( value.name && value.stream ) setValue(prev=>{
+            const newId = `${prev.name.slice(0, 5)}${prev.stream.slice(0, 4)}`; 
+            return { ...prev, id: newId};
+        })
     }
     useEffect(()=>{
         currentEducation && setValue(prev=>{return{...prev, ['end_date']: 'Present'}})
@@ -33,8 +40,17 @@ function Education(props) {
 
     function submitHandler(e){
         e.preventDefault();
-        dispatch(bioActions.updateBioData({ education: value }))
-        // setReview(true)
+        if(!Object.values(editableValue).every(Boolean)){
+            dispatch(bioActions.updateBioData({ education: value }))
+        }
+        else{
+            const existing = eduDataFromStorer.findIndex(item=>item.id === editableValue.id)
+            console.log(existing, editableValue)
+            const dupe = [...eduDataFromStorer]
+            dupe.splice(existing, 1, value)
+            dispatch(bioActions.replaceBioData({education: dupe}))
+            setEditableValue(initialState)
+        }
         setAddMore(false)
         setCurrentEducation(false)
         setValue(initialState)
@@ -43,28 +59,47 @@ function Education(props) {
     function addItemHandler(){
         setAddMore(true)
     }
+    function existingItemHandler(e, id){
+        const existing = eduDataFromStorer.findIndex(item=>item.id === id)
+        const dupe = [...eduDataFromStorer]   
+        if(existing !== -1){
+            if(e.target.id === 'delete') dupe.splice(existing, 1)
+            else if(e.target.id === 'edit'){
+                const editable = dupe[existing]
+                const { name, course, stream, grade, start_date, end_date } = editable
+                setEditableValue({name, course, stream, grade, start_date, end_date, id})
+                setValue(editable)
+                setAddMore(true)
+            }
+            dispatch(bioActions.replaceBioData({ education: dupe }))
+        }
+    }
     const courseArr = ['High School education', 'Higher secondary school educaton', 'BTech', 'BE', 'BSc', 'Bsc(Hons)', 'BArch', 'BCom', 'BCA', 'BBA', 'MTech', 'ME', 'MSc', 'MCom', 'MCA', 'MBA' ]
   return (
     <div className='formSectionContainer'>
-        {eduDataFromStorer.length > 0 && <ExistingData onAddMore = {addItemHandler} target='education'/>}
-        {addMore && <><div className='heading'>Education Section</div>
+        {eduDataFromStorer.length > 0 && <ExistingData onAddMore = {addItemHandler} target='education' onClick={ existingItemHandler }/>}
+        {(addMore || !eduDataFromStorer.length > 0) && <><div className='heading'>Education Section</div>
         <FlexBox style={{alignItems: 'start'}}>
-            <LabelInput id='Name of the Institute' placeholder='Institute' labelName='Name of the Institute'  name='name' onChange={valueChangeHandler}/>
+            <LabelInput id='Name of the Institute' placeholder='Institute' labelName='Name of the Institute'  name='name' onChange={valueChangeHandler} value={value.name}/>
             <FlexBox direction = 'row' width = '100'>
-                <SelectorLabel id='Course' labelName='Course/Degree' options={courseArr} name='course' onChange={valueSelectionHandler}/>
-                <LabelInput id='Stream' placeholder='Stream' labelName='Stream' name='stream' onChange={valueChangeHandler}/>
+                <SelectorLabel id='Course' labelName='Course/Degree' options={courseArr} name='course' onChange={valueSelectionHandler} defaultValue={value.course ? courseArr.findIndex(item=>item===value.course) : 0}/>
+                <LabelInput id='Stream' placeholder='Stream' labelName='Stream' name='stream' onChange={valueChangeHandler} value={value.stream}/>
             </FlexBox>
             <FlexBox direction='row' width = '100'>
-                <SelectorLabel id='grade' labelName='Choose category' options={['Choose Percentage/CGPA', 'Percentage', 'GPA']} name='selector' onChange={valueSelectionHandler}/>
-                <LabelInput id='grade' placeholder='Grade/Percentage' labelName='Grade/Percentage' type='number' name='grade' onChange={valueChangeHandler}/>
+                <SelectorLabel id='grade' labelName='Choose category' options={['Choose Percentage/CGPA', 'Percentage', 'GPA']} name='selector' onChange={valueSelectionHandler} defaultValue={value.selector ? courseArr.findIndex(item=>item===value.selector) : 0}/>
+                <LabelInput id='grade' placeholder='Grade/Percentage' labelName='Grade/Percentage' type='number' name='grade' onChange={valueChangeHandler} value={value.grade}/>
             </FlexBox>
             <FlexBox direction='row' width = '100'>
-                <LabelDate id='startDate' labelName='Start date' name='start_date' onChange={valueChangeHandler}/>
-                <LabelDate id='endDate' labelName='End date' disabled={currentEducation} name='end_date' onChange={valueChangeHandler}/>
+                <LabelDate id='startDate' labelName='Start date' name='start_date' onChange={valueChangeHandler} value={value.start_date}/>
+                <LabelDate id='endDate' labelName='End date' disabled={currentEducation} name='end_date' onChange={valueChangeHandler} value={value.end_date}/>
             </FlexBox>
             <FlexBox direction='row' style={{'marginLeft': '1rem'}}>
                 <input type='checkbox' id='current' onChange={()=>setCurrentEducation(prev=>!prev)} name='end_date'/>
                 <label htmlFor="current" style={{'marginLeft': '1rem'}}>Currently studying</label>
+            </FlexBox>
+            <FlexBox width='100' style={{'alignItems': 'start'}}>
+                <label htmlFor="accomplishments" style={{'textAlign': 'left', margin: '8px 0px', 'fontSize': '1.05rem'}}>Accomplishments / Achievements (optional)</label>
+                <textarea name="accomplishments" id="accomplishments" placeholder='Hit Enter for new bullet point' onChange={valueChangeHandler} value={value.accomplishments && value.accomplishments} className='textArea' ></textarea>
             </FlexBox>
         </FlexBox></> }
         <FlexBox direction='row'>

@@ -1,14 +1,14 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+import { configureStore, createSlice, current } from '@reduxjs/toolkit'
 
 const dummyPersonalData = { name: 'Name', secondName: '',  email: 'samplemail@email.com', phone: '+9112345677890', linkedIn: 'user@LinkedIn.com'}
 const dummyEducationData = [
     { name: 'Institute name 1',  course: 'Course name 1', stream: 'stream 1', selector: 'GPA', grade: 9.04, start_date: 'YYYY-MM',end_date: 'YYYY-MM', accomplishments: ['Achievement 1', 'Achievement 2', 'Achievement 3'] },
-    { name: 'Institute name 2', course: 'Course name 2', stream: 'stream 2', selector: 'Percentage',  grade: 80.4, start_date: 'YYYY-MM', end_date: 'YYYY-MM',accomplishments: ['Achievement 1', 'Achievement 2', 'Achievement 3'] }
+    { name: 'Institute name 2', course: 'Course name 2', stream: 'stream 2', selector: 'Percentage',  grade: 80.4, start_date: 'YYYY-MM', end_date: 'YYYY-MM',accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3\n' }
 ]
 const dummySkills = [ 'Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 'Skill 5']
 const dummyXpDetails = [
-    { name: 'Company name', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: ['Achievement 1', 'Achievement 2', 'Achievement 3'] }, 
-    { name: 'Company name 2', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: ['Achievement 1', 'Achievement 2', 'Achievement 3'] }
+    { name: 'Company name', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3\n' }, 
+    { name: 'Company name 2', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3\n' }
 ]
 
 const formPage = ['Personal Info', 'Education', 'Skills', 'Experience', 'Additional']
@@ -19,6 +19,12 @@ function updateBioData(state, action){
     const [value] = Object.values(action.payload)
     return {...state, data: {...state.data, [key]: [...state.data[key], value]}}
 }
+function replaceBioData(state, action){
+    const [ target ] = Object.keys(action.payload)
+    state.data[target] = action.payload[target]
+    // return { ...state, data: { ...state.data, [target]: [action.payload]}}
+    // console.log(state.data[target])
+}
 function updateCurrentPage(state, action){
     const { direction, target } = action.payload;
     if(direction){
@@ -28,23 +34,35 @@ function updateCurrentPage(state, action){
     else{
         currentIndex = +target;
     }
-    state.currentForm = formPage[currentIndex] 
+    state.currentForm = state.allSections[currentIndex] 
+}
+function updatePagesArray(state, action){
+    state.allSections.push(...action.payload)
 }
 
 const bioData = createSlice({
     name: 'bioData',
-    initialState: {data: {
+    initialState: {
+        data: {
         personal: [], 
         education: [], 
         skills: [], 
         xp: [], 
-        additional: []
-    }, currentForm: formPage[0]}, 
-    reducers:{ updateBioData, updateCurrentPage }
+        additional: [], 
+        certifications: [],
+        projects: [], 
+        recognitions: [],
+        publications: [], 
+        accomplishments: [],
+        languages: [],
+        volunteering: []
+    }, 
+    allSections: formPage,
+    currentForm: formPage[0]}, 
+    reducers:{ updateBioData, updateCurrentPage, updatePagesArray, replaceBioData }
 })
 
 const store = configureStore( { reducer: { 'bioData': bioData.reducer } } )
 const bioActions = bioData.actions
-// console.log(bioActions)
 export default store 
 export { bioActions, dummyEducationData, dummyPersonalData, dummySkills, dummyXpDetails }

@@ -6,7 +6,9 @@ import Skills from './skills/Skills'
 import Xp from './xp/Xp'
 import { useSelector } from 'react-redux'
 import Additional from './additional/Additional'
+import SelectiveAdditional from './additional/SelectiveAdditional'
 
+const miscArray = [ 'Certifications', 'Projects', 'Recognitions', 'Publications', 'Accomplishments', 'Languages', 'Volunteering' ]
 function Form(props) {
   const currentPage = useSelector(state=>state.bioData.currentForm)
   const { onItemChoose:chosen } = props
@@ -19,10 +21,11 @@ function Form(props) {
         { currentPage === 'Education' && <Education /> }
         { currentPage === 'Skills' && <Skills />}
         { currentPage === 'Experience' && <Xp />}
-        {/* { currentPage === 'Additional' && <Additional />} */}
-        <Additional />
+        { currentPage === 'Additional' && <Additional />}
+        { miscArray.includes( currentPage ) && <Additional /> }
     </form>
   )
 }
 
 export default Form
+export { miscArray }
