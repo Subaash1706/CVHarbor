@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './xp.module.css'
 import FlexBox from '../../cv_components/flexbox/FlexBox'
 import LabelInput from '../form_components/LabelInput'
@@ -18,12 +18,14 @@ function Xp(props) {
     const [ value, setValue ] = useState(initialValue)
     const [ editableValue, setEditableValue ] = useState(initialValue)
     const [ validity, setValidity ] = useState(false)
-    
-    function valueChangeHandler(e){
-        // console.log('changed', e.target.value)
-        setValue(prev=>{return{...prev, [e.target.name]: e.target.value}})
+    const { log: l } =  console;
+
+    useEffect(()=>{
         setValidity(Object.values(value).every(Boolean))
-        // console.log(value)
+    }, [ value ])
+    function valueChangeHandler(e){
+        setValue(prev=>{return{...prev, [e.target.name]: e.target.value}})
+        // setValidity(Object.values(value).every(Boolean))
         if( value.name && value.role ) setValue(prev=>{
             const newId = `${prev.name.slice(0, 5)}${prev.role.slice(0, 4)}`; 
             return { ...prev, id: newId};

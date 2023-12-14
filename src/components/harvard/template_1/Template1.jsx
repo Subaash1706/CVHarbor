@@ -65,11 +65,11 @@ const Template1 = React.forwardRef((props, ref)=>{
 
                 {/* Technical Skills */}
                 <section>
-                    { console.log(skillsInfo.flat(1))}
+                    {/* { console.log(skillsInfo.flat())} */}
                     <Heading style={{'fontWeight': '550', 'fontSize': '14px','margin': '1rem 0px'}} centered='true'>Technical Skills</Heading>
                     <Hr />
                     <ul className={classes.skills}>
-                        { skillsInfo.flat(1).map((item, ind)=>{
+                        { skillsInfo.flat().map((item, ind)=>{
                             return(
                                 <li key={ ind }>{ item }</li>
                             )

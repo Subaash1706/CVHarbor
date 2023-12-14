@@ -5,13 +5,22 @@
     padding: 5px;
 }
 .previewContainer{
+    border: 1px solid gray;
+    border-radius: 8px;
     margin: 0 3.5rem;
+    position: absolute;
+    max-width: 15vw;
+    max-height: 15rem;
+    padding: 8px;
+    background-color: white;
+    right: 0;
+    top: 0;
 }
 .previewWindow{
     flex: 1;
-    border: 1px solid gray;
-    max-height: 30vh;
-    width: 15vw;
+    /* border: 1px solid gray; */
+    max-height: 8rem;
+    /* width: 15vw; */
     padding: 8px;
     overflow-y: auto;
     list-style-position: inside;
