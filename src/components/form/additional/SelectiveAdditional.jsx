@@ -47,7 +47,6 @@ function SelectiveAdditional(props) {
         setAddMore(true)
     }
     function existingItemHandler(e, id){
-        // console.log(currentPageFromStore)
         const existing = currentPageFromStore.findIndex(item=>item.id === id)
         const dupe = [...currentPageFromStore]   
         if(existing !== -1){
@@ -62,9 +61,8 @@ function SelectiveAdditional(props) {
             dispatch(bioActions.replaceBioData({ [currentPageLowerCase]: dupe }))
         }
     }
-    // console.log('current data', currentPageFromStore)
   return ( <>
-            { existing && <ExistingData onAddMore={addMoreHandler} target={currentPageLowerCase} onClick={existingItemHandler}/>}
+            { (existing || currentPageFromStore.length > 0) && <ExistingData onAddMore={addMoreHandler} target={currentPageLowerCase} onClick={existingItemHandler}/>} 
             { (addMore || nextAdditional || !currentPageFromStore.length > 0) && <FlexBox key={`${currentPage}`} style={{'alignItems': 'start', border: '1px solid gray', marginBottom: '2rem', padding: '2rem', 'borderRadius': '10px'}}>
                 <FlexBox direction='row' width='100'>
                     <LabelInput id='name' labelName='Add a heading' name='name' onChange={(e)=>valueChangeHandler(e, currentPage)} value={value.name}/>

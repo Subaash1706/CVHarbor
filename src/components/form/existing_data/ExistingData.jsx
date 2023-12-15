@@ -12,9 +12,8 @@ function ExistingData(props) {
   return (
     <>
         { target && target.map((item, index)=>{
-            const { name, secondName, email, phone, linkedIn, course, stream, grade, start_date, end_date, id } = item
+            const { name, secondName, email, phone, linkedIn, course, stream, grade, start_date, end_date, id } = item;
             return(
-                <>
                     <FlexBox key={index} style={{border: '1px solid gray', alignItems: 'start', padding: '15px', 'position': 'relative', margin: '8px'}} width='100'>
                         <strong style={{'fontSize': '1.5rem'}}>{name}&nbsp;{ secondName && secondName }</strong>
                         {(course || email ) && <p>{course || email}, {course && stream}</p>}
@@ -31,7 +30,6 @@ function ExistingData(props) {
                             </div>
                         </div>
                     </FlexBox>
-                </>
             )
         })}
         { (dataArray && dataArray.length > 0) && 

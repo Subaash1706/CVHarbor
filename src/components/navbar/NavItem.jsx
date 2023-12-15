@@ -3,6 +3,7 @@ import classes from './navitem.module.css'
 import checkSvg from '../../assets/svg/check_circle_FILL1_wght400_GRAD0_opsz24.svg'
 import unCheckSvg from '../../assets/svg/cancel_FILL1_wght400_GRAD0_opsz24.svg'
 
+
 function NavItem(props) {
 
     const [ hoverState, setHoverState ] = useState(false);

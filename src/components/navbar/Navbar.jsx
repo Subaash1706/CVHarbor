@@ -12,6 +12,8 @@ import { bioActions } from '../store/store'
 function Navbar(props) {
     const data = useSelector(state=>state.bioData.data)
     const { personal, education, skills, xp } = data
+    const page = useSelector(state=>state.bioData.allSections)
+    const restPages = page.slice( 5 )
     function checkValidity(target){
         console.log(target)
       return Object.values(target).every(Boolean)
@@ -31,7 +33,7 @@ function Navbar(props) {
             <NavItem name={ educationSvg } checked={education.length != 0} id='Education' onClick={ navClickHandler } target='1'/>
             <NavItem name={ skillSvg } checked={skills.length != 0} id='Skills' onClick={ navClickHandler } target='2'/>
             <NavItem name={ xpSvg } checked={xp.length != 0} id='Experience' onClick={ navClickHandler } target='3'/>
-            <NavItem name={ addMoreSvg } id='Add more' onClick={ navClickHandler } target='4'/>
+            <NavItem name={ addMoreSvg } id='Add more' onClick={ navClickHandler } target={ restPages.length > 0 ? '5' : '4' }/>
         </ul>
     </nav>
   )

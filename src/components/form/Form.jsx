@@ -10,7 +10,9 @@ import SelectiveAdditional from './additional/SelectiveAdditional'
 
 const miscArray = [ 'Certifications', 'Projects', 'Recognitions', 'Publications', 'Accomplishments', 'Languages', 'Volunteering' ]
 function Form(props) {
+  const { log: l } = console
   const currentPage = useSelector(state=>state.bioData.currentForm)
+  // l('currenpage on missc', currentPage)
   const { onItemChoose:chosen } = props
   function submitHandler(e){
     e.preventDefault()

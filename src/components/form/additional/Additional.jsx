@@ -9,10 +9,13 @@ import SelectiveAdditional from './SelectiveAdditional'
 import { miscArray } from '../Form'
 
 function Additional(props) {
+    const { log: l } = console
     const dispatch = useDispatch()
     const bio = useSelector(state=>state.bioData.data)
     const currentPage = useSelector(state=>state.bioData.currentForm)
     const { personal, education, skills, xp, certifications, ...rest } = bio
+    const page = useSelector(state=>state.bioData.allSections)
+    const restPages = page.slice( 5 )
     const [ isChecked, setisChecked ] = useState({
         Certifications: false, 
         Projects: false, 
@@ -23,36 +26,31 @@ function Additional(props) {
         Volunteering: false
     });
     const [ checkedArr, setCheckedArr ] = useState([])
-    const [ proceedState, setProceedState ] = useState(false)
+    const [ proceedState, setProceedState ] = useState(restPages.length > 0)
     const [ nextAdditionalValue, setNextAdditionalValue ] = useState( false )
     function checkChangeHandler(e){
         setisChecked(prev=>{return{...prev, [e.target.id]: e.target.checked}})
     }
     useEffect(()=>{
-        setCheckedArr([...Object.keys(isChecked).filter((check)=>isChecked[check])])  
+        setCheckedArr([...Object.keys(isChecked).filter((check)=>isChecked[check])])
     }, [ isChecked ])
     useEffect(()=>{
         if(miscArray.includes( currentPage )){
             setProceedState(true) 
         }
     }, [ currentPage ])
-    // useEffect(()=>{
-    //     console.log(rest)
-    //     if(Object.values(rest).some(array=>array.length > 0)) setProceedState(true)
-    // }, [])
     function preProceedState(){
         dispatch(bioActions.updatePagesArray(checkedArr))
         dispatch(bioActions.updateCurrentPage({direction: '1'}))
     }
-    // console.log(proceedState)
     function submitHandler(){
         dispatch(bioActions.updateCurrentPage({direction: '1'}))
     }
-    console.log(proceedState)
+    // l('currenpage', props.currentPage)
   return (
     <div className='formSectionContainer'>
         <div className="heading">Additional{proceedState && `: ${currentPage}`}</div>
-        { (!proceedState ) ? <FlexBox style={{ 'alignItems': 'start', marginTop: '1rem'}}>
+        { ( !proceedState && !restPages.length > 0 ) ? <FlexBox style={{ 'alignItems': 'start', marginTop: '1rem'}}>
                 <CheckBoxLabel id='Certifications' labelName='Certifications' style={{color: 'black', fontSize: '1.25rem'}} onChange={checkChangeHandler} checked={isChecked.Certifications}/>
                 <CheckBoxLabel id='Projects' labelName='Projects' style={{color: 'black', fontSize: '1.25rem'}} onChange={checkChangeHandler} checked={isChecked.Projects}/>
                 <CheckBoxLabel id='Recognitions' labelName='Recognitions' style={{color: 'black', fontSize: '1.25rem'}} onChange={checkChangeHandler} checked={isChecked.Recognitions}/>
@@ -60,7 +58,7 @@ function Additional(props) {
                 <CheckBoxLabel id='Accomplishments' labelName='Accomplishments' style={{color: 'black', fontSize: '1.25rem'}} onChange={checkChangeHandler} checked={isChecked.Accomplishments}/>
                 <CheckBoxLabel id='Languages' labelName='Languages' style={{color: 'black', fontSize: '1.25rem'}} onChange={checkChangeHandler} checked={isChecked.Languages}/>
                 <CheckBoxLabel id='Volunteering' labelName='Volunteering' style={{color: 'black', fontSize: '1.25rem'}} onChange={checkChangeHandler} checked={isChecked.Volunteering}/>
-            </FlexBox> : <SelectiveAdditional onAdditionalValue={nextAdditionalValue} onRetreat={()=>setNextAdditionalValue(false)}/> }
+            </FlexBox> : <SelectiveAdditional onAdditionalValue={nextAdditionalValue} onRetreat={()=>setNextAdditionalValue(false)} restPages={ restPages } /> }
         <center>
             <button onClick={preProceedState} style={{'display': proceedState ? 'none': 'block'}} disabled={!checkedArr.length> 0}>Proceed</button>
         </center>
