@@ -1,0 +1,124 @@
+.landingPageContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    /* start for mobile view */
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100vw;
+    height: 87.25vh;
+    height: 100vh;
+    background-color: greenyellow;
+    overflow-y: hidden;
+}
+.landingPageTextContainer{
+    text-align: center;
+    width: 85%;
+    margin-top: 6%;
+    cursor: pointer;
+}
+.templateSampleScrollContainer{
+    background-color: greenyellow;
+    position: relative;
+    width: 15%;
+    height: 100%;
+    /* -webkit-mask: linear-gradient(transparent 0%, white 25%, white 100%); */
+    -webkit-mask: linear-gradient(transparent 2%, white 30%, white 70%, transparent 98%);
+    mask: linear-gradient(transparent 2%, white 30%, white 70%, transparent 98%);
+    /* mask: linear-gradient(transparent, white 25%, transparent); */
+    /* background-color: rgba(255, 255, 255, 0); */
+}
+.templateSampleScroll::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* background: linear-gradient(greenyellow 0%, transparent 45%, greenyellow 100%) */
+}
+.templateSampleScroll{
+    display: flex;
+    flex-direction: column;
+    /* padding: 8px 0px; */
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    /* animation:  20s scroll infinite linear; */
+}
+.templateSampleScroll:hover{
+    animation-play-state: paused;
+}
+@keyframes scroll{
+    0%{
+        transform: translate(0%, 0%)
+    }
+    100%{
+        transform: translate(0%, -50%)
+    }
+}
+.templateSampleScroll img{
+    border-radius: 10px;
+    margin: 8px 0px;
+    box-shadow: 2px 5px 15px rgba(128, 128, 128, 0.688);
+    width: 80%;
+    aspect-ratio: 1/1.414;
+    object-fit: cover;
+    object-position: center;  
+}
+.landingPageText{
+    position: relative;
+    font-family: 'Clash Display';
+    font-weight: 950;
+    word-wrap: break-word;
+    font-size: 20rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    /* line-height: 22rem; */
+    color: transparent; 
+    background-clip: text!important;
+    background-position: center!important;
+    background-size: cover;
+    /* transition: background 800ms; */
+}
+.landingPageText::after{
+    content: 'Create your own';
+    color: rgb(0, 58, 0);
+    font-size: 2.5rem;
+    font-weight: 400;
+    position: absolute;
+    left: 50%;
+    translate: -50% 0%;
+}
+.landingPageText::before{
+    content: 'in Seconds';
+    color: black;
+    font-size: 2.5rem;
+    font-weight: 400;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    translate: -50% 0%;
+}
+.proceedButton{
+    position: absolute;
+    bottom: 1rem;
+    border: none;
+    width: 6rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: yellow;
+    box-shadow: 0px 0px 35px 5px yellow;
+    overflow: hidden;
+    cursor: pointer;
+    /* pointer-events: none; */
+    transform: translateX(-50%);
+    transition: all 500ms;
+}
+.proceedButton span{
+    display: inline-block;
+    font-size: 3rem;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Poppins';
+    translate: 15% 0;
+}
+

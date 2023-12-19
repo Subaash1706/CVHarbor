@@ -24,18 +24,22 @@ function Navbar(props) {
         dispatch(bioActions.updateCurrentPage({target: e.target.target}))
     }
   return (
-    <nav className={classes.navbarContainer}>
+    <div className={classes.navbarWrapper}>
+        <nav className={classes.navbarContainer}>
         <div className={classes.navbarBrand}>
             CV.Harbor
         </div>
         <ul className={classes.navUl}>
-            <NavItem name={ personSvg } checked={personal.length != 0} id='Personal info' onClick={ navClickHandler } target='0'/>
+            <button className={classes.toggleButton}></button>
+            {/* <NavItem name={ personSvg } checked={personal.length != 0} id='Personal info' onClick={ navClickHandler } target='0'/>
             <NavItem name={ educationSvg } checked={education.length != 0} id='Education' onClick={ navClickHandler } target='1'/>
             <NavItem name={ skillSvg } checked={skills.length != 0} id='Skills' onClick={ navClickHandler } target='2'/>
             <NavItem name={ xpSvg } checked={xp.length != 0} id='Experience' onClick={ navClickHandler } target='3'/>
-            <NavItem name={ addMoreSvg } id='Add more' onClick={ navClickHandler } target={ restPages.length > 0 ? '5' : '4' }/>
+            <NavItem name={ addMoreSvg } id='Add more' onClick={ navClickHandler } target={ restPages.length > 0 ? '5' : '4' }/> */}
         </ul>
     </nav>
+    </div>
+
   )
 }
 

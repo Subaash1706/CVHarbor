@@ -5,6 +5,7 @@ import LabelInput from '../form_components/LabelInput'
 import { useDispatch, useSelector } from 'react-redux'
 import { bioActions } from '../../store/store'
 import ExistingData from '../existing_data/ExistingData'
+import saveSvg from '../../../assets/svg/save_FILL1_wght400_GRAD0_opsz24.svg'
 
 function PersonalInfo() {
     const dispatch = useDispatch()
@@ -53,7 +54,9 @@ function PersonalInfo() {
   return (
     <div className='formSectionContainer'>
         { saved && <ExistingData target={ 'personal' } disableAddMore = {true} onClick={ storedActionHandler }/>}
-        { (!saved || Object.values(editableValue).every(Boolean)) && <><div className='heading'>Personal Info</div>
+        { (!saved || Object.values(editableValue).every(Boolean)) 
+            && <>
+                <div className='heading'>Personal Info</div>
             <FlexBox style={{alignItems: 'start'}}>
                 <FlexBox direction='row'>
                     <LabelInput id='firstName' labelName='First Name' placeholder='First name' name='name' onChange={ valueChangeHandler } value={ personalInfo.name }/>

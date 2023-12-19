@@ -74,7 +74,7 @@ function Education(props) {
             dispatch(bioActions.replaceBioData({ education: dupe }))
         }
     }
-    const courseArr = ['High School education', 'Higher secondary school educaton', 'BTech', 'BE', 'BSc', 'Bsc(Hons)', 'BArch', 'BCom', 'BCA', 'BBA', 'MTech', 'ME', 'MSc', 'MCom', 'MCA', 'MBA' ]
+    const courseArr = ['Select Course', 'High School education', 'Higher secondary school educaton', 'BTech', 'BE', 'BSc', 'Bsc(Hons)', 'BArch', 'BCom', 'BCA', 'BBA', 'MTech', 'ME', 'MSc', 'MCom', 'MCA', 'MBA' ]
   return (
     <div className='formSectionContainer'>
         {eduDataFromStorer.length > 0 && <ExistingData onAddMore = {addItemHandler} target='education' onClick={ existingItemHandler }/>}

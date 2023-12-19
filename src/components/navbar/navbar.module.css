@@ -1,29 +1,91 @@
  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+ .navbarWrapper{
+    position: fixed;
+    top: 20px;
+    text-align: center;
+    min-width: 100vw;
+ }
 .navbarContainer{
     font-family: 'poppins';
-    position: sticky;
-    top: 0;
-    background-color: #ffffff4c;
+    border-radius: 55px;
+    background-color: #ffffffc5;
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
     color: black;
+    font-weight: light;
     box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.24);
-    position: relative;
+    width: 55%;
+    height: fit-content;
+    margin: 0px auto;
     z-index: 99;
+    padding: 0.5rem 2.5rem;
+    overflow: hidden;
 }
 .navbarBrand{
     font-size: 2.5rem;
-    font-weight: 650;
+    font-weight: 200;
 }
 .navUl{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    transition: all 500ms;
+    /* border: solid; */
+}
+.toggleButton{
+    position: relative;
+    width: 4rem;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition-property: center;
+    background-color: greenyellow;
+    box-shadow: 0px 0px 25px rgb(172, 255, 47);
+}
+.toggleButton::after{
+    content: '';
+    position: absolute;
+    width: 35%;
+    height: 3px;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+}
+.toggleButton::before{
+    content: '';
+    position: absolute;
+    width: 35%;
+    height: 3px;
+    left: 50%;
+    bottom: 35%;
+    transform: translateX(-50%);
+    background-color: black;  
+}
+.toggleButton:active::after{
+    animation: shake 200ms linear;
+}
+.toggleButton:active::before{
+    animation: antiShake 200ms linear;
+}
+@keyframes shake {
+    from{
+        transform: translateX(-50%) rotateZ(30deg);
+    }
+    to{
+        transform: translateX(-50%) rotateZ(-30deg);
+    }
+}
+@keyframes antiShake {
+    from{
+        transform: translateX(-50%) rotateZ(-30deg);
+    }
+    to{
+        transform: translateX(-50%) rotateZ(30deg);
+    }
 }
 /* body{
     background-color: rgb(49, 49, 49);

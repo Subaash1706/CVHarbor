@@ -17,6 +17,7 @@
     text-decoration: underline;
 }
 .editContainer{
+  display: inline-block;
   position: absolute;
   right:5rem;
   bottom: 0;
