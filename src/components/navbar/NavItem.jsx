@@ -8,10 +8,12 @@ function NavItem(props) {
 
     const [ hoverState, setHoverState ] = useState(false);
   return (
-    <li className={classes.navLi} style={{opacity:`${props.checked ? 1 : 0.5}`}} onClick={ props.onClick }>
-        <img src = { props.checked ? checkSvg : unCheckSvg } className={classes.check}/>
-        <a className={classes.navLink} onMouseEnter={e=>setHoverState(e.target.id)} onMouseLeave={()=>setHoverState(false)} id={ props.id } target={props.target}>
-            { !hoverState ? <img src = {props.name} style={{'verticalAlign': 'middle', 'transition': 'opacity 500ms'}} id={ props.id }/> : hoverState}
+    <li className={classes.navLi} target={props.target}>
+        {/* <img src = { props.checked ? checkSvg : unCheckSvg } className={classes.check}/> */}
+        {/* <a className={classes.navLink} onMouseEnter={e=>setHoverState(e.target.id)} onMouseLeave={()=>setHoverState(false)} id={ props.id } target={props.target}> */}
+        <a className={classes.navLink} id={ props.id } target={props.target} onClick={props.onClick}>
+            <img src = {props.name} style={{'verticalAlign': 'middle', 'transition': 'opacity 500ms'}} id={ props.id } target={props.target}/> 
+            {/* { !hoverState ? <img src = {props.name} style={{'verticalAlign': 'middle', 'transition': 'opacity 500ms'}} id={ props.id }/> : hoverState} */}
         </a>
     </li>
   )
