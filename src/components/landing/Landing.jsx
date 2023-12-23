@@ -5,7 +5,7 @@ import fromImg from '../../assets/images/sample/Arrayfrom.png'
 import *as images from './Images'
 
 
-function Landing() {
+function Landing(props) {
   const [ hoveredState, setHoveredState ] = useState(false)
   const [ hoveredItem, setHoveredItem ] = useState('')
   const imageBaseUrl = "src/assets/images/sample/"
@@ -41,7 +41,7 @@ function Landing() {
     <div className={ classes.landingPageContainer }>
       <div className={classes.landingPageTextContainer}>
         <div className={ classes.landingPageText} onMouseEnter={ changeBg } style={{ 'background': hoveredState
-         ? `url(${imageBaseUrl}${hoveredItem})` :  '', 'color': hoveredState ? 'transparent' : 'rgb(0, 58, 0)' }} onMouseLeave={ ()=>{setHoveredItem(''); setHoveredState(false)} } onMouseMove={ changePosition }>
+         ? `url(${imageBaseUrl}${hoveredItem})` :  '', 'color': hoveredState ? 'transparent' : 'rgb(0, 58, 0)' }} onMouseLeave={ ()=>{setHoveredItem(''); setHoveredState(false)} } onMouseMove={ changePosition } onClick={()=>{props.overlayStatus(true); console.log('clicked')}}>
           Resume
         </div>
         <button className={`${classes.proceedButton} proceedButton`}>
