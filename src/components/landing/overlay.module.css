@@ -1,0 +1,94 @@
+.overlayContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    z-index: 100;
+    /* transform-origin: left; */
+    overflow: hidden;
+    /* transition: all 850ms; */
+    /* visibility: hidden;
+    transition: opacity 450ms linear, visibility 0s linear 450ms; */
+    /* animation: appear 450ms linear 200ms forwards; */
+    /* animation: enter 450ms linear 200ms forwards; */
+}
+/* div[data-index]{
+    border: solid;
+    position: relative;
+    height: 20%;
+    background-color: peachpuff;
+    scale: 0 1;
+    transform-origin: left;
+    animation: enter 450ms linear 0s backwards;
+} */
+div[data-index]::after, div[data-index]::before{
+    content: '';
+    position: absolute;
+    right: -5rem;
+    width: 4rem;
+    height: 100%;
+    background-color:red;
+    z-index: 102;
+}
+div[data-index]::before{
+    background-color: blue;
+    right: -10rem;
+    z-index: 101;
+}
+div[data-index = '1']{
+    animation-delay: 350ms;
+}
+div[data-index = '2']{
+    animation-delay: 300ms;
+}
+div[data-index = '3']{
+    animation-delay: 250ms;
+}
+div[data-index = '4']{
+    animation-delay: 200ms;
+}
+div[data-index = '5']{
+    animation-delay: 150ms;
+}
+.navActive{opacity:1;
+visibility: visible;}
+.exit{
+    opacity: 0;
+    visibility: hidden;
+    /* animation: exit 450ms linear 0s forwards; */
+}
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-family: 'poppins';
+    translate: -50% -50%;
+    font-size: 4rem;
+    opacity: 0;
+    z-index: 299;
+    animation: contentEnter 400ms linear forwards;
+    animation-delay: 650ms;
+    transition: opacity 450ms linear, visibility 0s linear 450ms;
+}
+@keyframes enter {
+    0%{
+        transform: scale(0, 1);
+    }
+    100%{
+        transform: scale( 100%, 100% );
+    }
+}
+@keyframes exit{
+    100%{ transform: scale( 0, 1)}
+}
+@keyframes contentEnter {
+    from{ 
+        opacity: 0;
+        transform: translateY(-25%)
+     }
+    to{ 
+        opacity: 1;
+        transform: translateY(0%)
+    }
+}
