@@ -4,7 +4,7 @@ import classes from './modal.module.css'
 import FlexBox from '../cv_components/flexbox/FlexBox'
 import { useDispatch, useSelector } from 'react-redux'
 import { bioActions } from '../store/store'
-import warning from '../../assets/images/others/warning.jpg'
+// import warning from '../../assets/images/others/warning.jpg'
 import CheckBoxLabel from '../form/form_components/CheckBoxLabel'
 
 function Modal(props) {

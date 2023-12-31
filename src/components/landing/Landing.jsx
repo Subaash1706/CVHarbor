@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import classes from './landing.module.css'
-import bgImage from '../../assets/images/image.png'
-import fromImg from '../../assets/images/sample/Arrayfrom.png'
-import *as images from './Images'
+// import bgImage from '../../assets/images/image.png'
+// import fromImg from '../../assets/images/sample/Arrayfrom.png'
+// import *as images from './Images'
 import {harvardFileArray, mitFileArray, modernFileArray} from '../imageSelector'
 
 
