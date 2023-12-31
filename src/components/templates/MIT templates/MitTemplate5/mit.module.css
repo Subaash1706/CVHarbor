@@ -1,0 +1,16 @@
+.templateLayout{
+    margin: 3rem;
+}
+.templateLayout *{
+    font-size: 12px;
+}
+.gridContainer{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+.grid1{
+    grid-column: 1/2;
+}
+.grid2{
+    grid-column: 2/-1;
+}

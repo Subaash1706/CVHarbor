@@ -1,0 +1,14 @@
+.templateLayout{
+    margin: 4rem;
+    font-size: 11px;
+}
+.templateLayout *{
+    font-size: 11px;
+    line-height: 1.5;
+}
+.noList{
+    list-style-type: none;
+}
+.noList ul> li{
+    list-style-type: none;
+}

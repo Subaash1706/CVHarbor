@@ -1,0 +1,8 @@
+.outwardList{
+    /* text-indent: 1.5rem; */
+    /* font-size: 10.5px; */
+    list-style-position:inside;
+}
+.date{
+    display: inline-block;
+}

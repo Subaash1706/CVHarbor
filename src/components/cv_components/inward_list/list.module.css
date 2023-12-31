@@ -1,3 +1,6 @@
 .inwardList{
     list-style-position: inside;
 }
+.date{
+    display: inline-block;
+}

@@ -1,7 +1,9 @@
 .a4container{
-    max-height: 87vh;
-    width: 45vw;
+    max-height: 100vh;
+    width: 60%;
+    padding-block: 2rem;
+    margin-top: 1.5rem;
     overflow-y: scroll;
-    scale: 0.9;
+    scale: 1;
     scrollbar-gutter: stable;
 }

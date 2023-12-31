@@ -1,7 +1,9 @@
 .formSectionContainer{
+    min-height: 100vh;
     font-family: 'Poppins';
-    /* border: solid; */
+    width: 100%!important;
     padding: 4rem;
+    background-color: red;
     /* border-radius: 25px; */
 }
 .formSectionContainer input{
@@ -28,4 +30,74 @@
 .heading{
     font-size: 3rem;
     margin-left: 15px;
+}
+.nextContainer{
+    border: solid;
+}
+.nextButton div, .nextButton{
+    padding: 10px;
+    max-width: 25rem;
+    font-size: 1.75rem;
+    position: relative;
+    border: none!important;
+    font-weight: 550;
+    background-color: yellow;
+    border-radius: 5px!important;
+}
+.nextButton div{
+    z-index: 199;
+}
+.nextButton::after, .nextButton::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: orange;
+    scale: 0 1;
+    transform-origin: left;
+    z-index: 5;
+    transition: all 200ms;
+}
+.nextButton::before{
+    z-index: 10;
+    background-color: orangered;
+    transition-delay: 200ms;
+}
+.nextButton:hover::after{
+    scale: 1 1;
+}
+.nextButton:hover::before{
+    scale: 1 1;
+}
+.nextButton span{
+    /* border: solid; */
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    vertical-align: middle;
+    translate: 0 -125%;
+    z-index: 255;
+}
+.nextButton img{
+    width: 30px;
+    height: auto;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+.avatarSpace{
+    margin: 8px;
+    /* float: left; */
+    width: 150px;
+    aspect-ratio: 9/12;
+    border: 1px solid gray;;
+    background-position: center;
+    background-image: url(../../../assets/images/sample/avatar_placeholder.jpg);
+    background-size: cover;
+}
+.avatar{
+    visibility: hidden;
+}
+@media screen and (width<450px) {
+    .formSectionContainer{
+        width: 100%;
+    }
 }

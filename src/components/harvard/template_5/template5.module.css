@@ -1,0 +1,8 @@
+.templateLayout{
+    margin: 3rem;
+}
+.templateLayout *{
+    font-family: 'Arial';
+    font-size: 11px;
+    line-height: 1.25;
+}

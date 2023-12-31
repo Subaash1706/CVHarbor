@@ -1,0 +1,15 @@
+.templateLayout{
+    margin: 3rem 2rem 2rem 2rem;
+    font-family: 'Arial';
+}
+.templateLayout *{
+    line-height: 1.25;
+    font-size: 11px;
+}
+.templateLayout section{
+    padding-bottom: '2rem'
+}
+.indentify{
+    list-style-type: none;
+    margin-left: 1.5rem;
+}

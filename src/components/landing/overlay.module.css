@@ -69,7 +69,64 @@ visibility: visible;}
     z-index: 299;
     animation: contentEnter 400ms linear forwards;
     animation-delay: 650ms;
-    transition: opacity 450ms linear, visibility 0s linear 450ms;
+    transition: opacity 850ms linear, visibility 0s linear 350ms;
+}
+.contentContainer{
+    display: flex;
+    /* justify-content: space-evenly; */
+    align-items: center;
+}
+.templateBlock{
+    width: 300px;
+    aspect-ratio: 12/16;
+    margin: 5rem;
+    border: 1px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 2px 5px 15px gray;
+    position: relative;
+}
+.templateBlock:hover{
+    scale: 1.25;
+}
+.harvardTemplateBlock{
+    background-image: url(../../assets/images/templates/Harvard/Harvard1.jpg);
+    background-size: contain;
+}
+.harvardTemplateBlock:hover::after{
+    content: 'Harvard templates';
+    font-size: 3rem;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(186, 186, 186, 0.816);
+    text-align: center;
+    vertical-align: middle;
+}
+.mitTemplateBlock{
+    background-image: url(../../assets/images/templates/Mit/Mit1.jpg);
+    background-size: contain;
+}
+.mitTemplateBlock:hover::after{
+    content: 'Mit Templates';
+    font-size: 3rem;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(186, 186, 186, 0.816);
+    text-align: center;
+    vertical-align: middle;
+}
+.modernTemplateBlock{
+    background-image: url(../../assets/images/templates/Modern/Modern1.PNG);
+    background-size: contain;
+}
+.modernTemplateBlock:hover::after{
+    content: 'Modern templates';
+    font-size: 3rem;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(186, 186, 186, 0.816);
+    text-align: center;
+    vertical-align: middle;
 }
 @keyframes enter {
     0%{

@@ -1,0 +1,7 @@
+.templateLayout{
+    margin: 3rem;
+}
+.templateLayout *{
+    font-size: 11px;
+    line-height: 1.35;
+}

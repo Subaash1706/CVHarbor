@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,200&display=swap');
+:root{
+    --FONT-SIZE: 7rem;
+    --FONT-WEIGHT: 200;
+}
+.pageSelectorSection{
+    text-align: right;
+    font-family: 'poppins';
+    margin-right: auto;
+    font-size: var(--FONT-SIZE);
+    font-weight: var(--FONT-WEIGHT);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    max-height: var(--FONT-SIZE);
+    width: 20rem;
+    text-align: left;
+    position: relative;
+}
+
+.pageSelectorSection::after{
+    content: '/';
+    position: absolute;
+    left: 50%;
+    padding: 5px;
+    translate: -50% 0px;
+}
+.pageSelectorSection div{
+    padding: 0px 1.5rem;
+}
+.currentPage{
+    translate: 0px calc(8.289*7rem);
+    transition: all 500ms;
+}
+.currentPage div{
+    transition: all 500ms;
+}
+.currentPage span, .pageSelectorTotalPages{
+    /* border: solid; */
+    /* font-style: italic; */
+    font-weight: var(--FONT-WEIGHT);
+    font-size: var(--FONT-SIZE);
+}
+.currentPage span{
+    max-height: var(--FONT-SIZE);
+}
+@media screen and (width < 580px) {
+    .pageSelectorSection{
+        font-size: 2rem;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        width: 8.5rem;
+        display: none;
+    }
+    .currentPage span, .pageSelectorTotalPages{
+        font-size: 3rem;
+    }
+    .currentPage{
+        translate: 0px calc(8.35*3rem);
+        transition: all 500ms;
+    }
+}

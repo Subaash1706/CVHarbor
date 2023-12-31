@@ -1,0 +1,34 @@
+@media screen and (width< 1024px) {
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    main form{
+        width: 60%;
+        margin: 0px auto;
+    }
+    .a4Container{
+        width: 100%;
+    }
+    .nextContainer{
+        width: 100%;
+        margin:0;
+        padding: 0;
+        padding-right: 5rem;
+    }
+}
+@media screen and (width < 769px){
+    main form{
+        width: 85%;
+    }
+}
+
+@media screen and (width<450px) {
+    main form{
+        width: 100%;
+        /* border: solid; */
+    }
+    
+    
+}

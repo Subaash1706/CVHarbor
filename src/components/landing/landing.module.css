@@ -41,7 +41,7 @@
     width: 100%;
     height: fit-content;
     text-align: center;
-    /* animation:  20s scroll infinite linear; */
+    animation:  20s scroll infinite linear;
 }
 .templateSampleScroll:hover{
     animation-play-state: paused;
@@ -126,4 +126,3 @@
     font-family: 'Poppins';
     translate: 15% 0;
 }
-

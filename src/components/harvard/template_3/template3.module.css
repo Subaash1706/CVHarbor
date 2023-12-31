@@ -1,0 +1,19 @@
+.templateLayout{
+    margin: 2rem;
+}
+.templateLayout *{
+    font-size: 11px;
+}
+.summary{
+    margin-left: 2rem;
+}
+.skills{
+    padding-top: 3px;
+    list-style-position: inside;
+    text-indent: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.inward{
+    margin-left: 1.5rem;
+}

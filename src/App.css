@@ -3,15 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 13px;
-    scrollbar-gutter: stable;
+    /* scrollbar-gutter: stable; */
 }
-@media print {
-    .printable{
-        width: 2481px;
-        aspect-ratio: 1/1.414;
-        scale: 2;
-        transform-origin: left top;
-    }
+body{
+    background-color: palegreen;
+    background-color: #CDFAD5;
 }
 hr{
     margin-bottom: 6px;
@@ -29,29 +25,47 @@ hr{
 .formSectionContainer{
     font-family: 'Poppins';
     padding: 4rem;
+    width: 100%;
+    /* border: solid; */
     /* border-radius: 25px; */
 }
-.formSectionContainer input, .formSectionContainer select{
-    font-size: 1.5rem;
-    padding: 8px;
+.formSectionContainer input, .formSectionContainer select, textarea{
+    position: relative;
+    font-size: 1.25rem;
+    padding: 15px;
     margin: 8px 0px 15px 0px;
-    border-radius: 6px;
+    border-radius: 15px;
     border: 1px solid gray;
-    width: 90%;
-
+    width: 100%;
+    box-shadow:5px 5px 0px green;
+    transition: all 250ms;
+}
+input:focus, select:focus, textarea:focus{
+    translate: 5px 5px;
+    box-shadow: 0px 0px 0px green;
+    border: 1px solid gray;
+    outline: none;
+    /* outline: 2px dashed rgba(0, 128, 0, 0.486); */
+    /* outline-offset: 2px; */
 }
 .formSectionContainer option{
-    font-size: 1.25rem;
+    font-size: 1.55rem;
     padding: 5px;
 }
 .formSectionContainer input[type='checkbox']{
+    box-shadow: 0px 0px 0px transparent;
     scale: 1.75;
     vertical-align: middle;
 }
+.formSectionContainer input[type='checkbox']:focus{
+    translate: 0px 0px;
+}
+
 .formSectionContainer label{
-    /* margin-left: 15px; */
+    /* display: none; */
     font-size: 1.05rem;
     color: gray;
+    color: black;
     text-wrap: nowrap;
 }
 .formSectionContainer button{
@@ -65,15 +79,133 @@ hr{
 .nextContainer{
     /* border: solid; */
     position: fixed;
+    left: 0;
     bottom: 0;
-    width: 50%;
-    background-color: rgba(255, 255, 255, 0.451);
+    width: 60%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.668);
+    border-radius: 35px; /*adjust this*/
     backdrop-filter: blur(5px);
 }
 .textArea{
     width: 100%;
     height: 8rem;
     resize: none;
-    padding: 8px;
+    padding: 18px 25px;
     font-size: 1.25rem
+}
+
+.navActive, .exit{
+    position: relative;
+    height: 20%;
+    background-color: peachpuff;
+    /* background-color: #FFD4B2; */
+
+}
+.navActive{  
+    /* opacity: 1; */
+    /* visibility: visible;  */
+    transform-origin: left;
+    /* transition: opacity 450ms linear; */
+    animation: enter 450ms linear 0s backwards;
+}
+.exit{
+    /* opacity: 0; */
+    visibility: hidden;
+    transform-origin: left;
+    transition: visibility 850ms linear;
+    animation: exit 450ms linear 0s forwards;
+}
+.wrapperActive{
+    visibility: visible;
+    transition: visibility 450ms linear;
+}
+.wrapperExit{
+    visibility: hidden;
+    transition: visibility 350ms linear;
+}
+.contentActive{
+    opacity: 1;
+    visibility: visible;
+    /* transition: opacity 550ms linear; */
+}
+.contentExit{
+    opacity: 0;
+    visibility: hidden;
+    /* transition: opacity 550ms linear; */
+}
+.proceedButton, .addmoreButton{
+    font-family: 'poppins';
+    background-color: transparent;
+    color: #186f65;
+    font-weight: 900;
+    border: 3px solid #186F65;
+    border-radius: 15px!important;
+    padding-block: 13px!important;
+    transition: all 500ms;
+}   
+.proceedButton:hover, .addmoreButton:hover{
+    background-color: #186F65;
+    color: white;
+    font-weight: 100;
+    box-shadow: 0px 5px 0px rgb(0, 65, 65);
+}
+.proceedButton:active, .addmoreButton:active{
+    translate: 0px 5px;
+    box-shadow: 0px 0px 0px transparent;
+}
+.proceedButton:disabled{
+    background-color: rgb(224, 224, 224);
+    color: #447f7847;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+@keyframes enter {
+    0%{
+        transform: scale(0, 1);
+    }
+    100%{
+        transform: scale( 100%, 100% );
+    }
+}
+@keyframes exit{
+    100%{ transform: scale( 0, 1)}
+}
+.printable{
+    width: 505px;
+    aspect-ratio: 1/1.414;
+    border: 0.5px solid gray;
+    background-color: white;
+    margin: auto;
+    /* background-color: yellow; */
+}
+@media screen and (width < 1024px){
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+@media print {
+    main, body{
+        width: 0px;
+        height: auto;
+    }
+    .a4Container{
+        display: block;
+        /* visibility: visible; */
+        width: 100%!important;
+        padding: 0;
+        margin: 0;
+    }
+    .printable{
+        display: block;
+        border: 2px solid black;
+        width: 505px;
+        aspect-ratio: 1/1.414;
+        scale: 2;
+        transform-origin: left top;
+    }
 }

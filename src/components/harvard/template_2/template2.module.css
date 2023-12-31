@@ -1,0 +1,19 @@
+.templateLayout{
+    margin: 1.5rem;
+    /* font-size: 13px!important; */
+    font-size: 11px!important;
+}
+.templateLayout div, li{
+    font-size: 11px;
+}
+.contactContainer span, .contactContainer div{
+    text-align: center;
+    font-size: 10.5px!important;
+}
+.skills{
+    padding-top: 3px;
+    list-style-position: inside;
+    text-indent: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
