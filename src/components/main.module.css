@@ -1,15 +1,40 @@
 main{
+    margin-top: 4rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: row;
-    /* margin: 0px 1rem; */
-    max-height: 85vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
     overflow-y: auto;
+    scrollbar-gutter: stable;
 }
 main form{
-    width: 65%;
+    width: 40%;
     height: 100%;
     margin: 0;
+    margin-top: 2rem;
+    position: relative;
+    /* z-index: 100; */
 }
+/* main form::after{
+    content: '';
+    position: absolute;
+
+    width: 95%;
+    height: 90%;
+
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
+    border: 2px solid green;
+
+    border-radius: 25px;
+    padding-block: 20px;
+
+    z-index: -1;
+} */
 ::-webkit-scrollbar{
    width: 5px;
 }

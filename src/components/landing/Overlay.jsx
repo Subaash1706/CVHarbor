@@ -10,7 +10,19 @@ function Overlay(props) {
         <div data-index = '3' className={`${props.className}`}></div>
         <div data-index = '4' className={`${props.className}`}></div>
         <div data-index = '5' className={`${props.className}`}></div>
-        <div className={`${classes.content} ${props.className==='navActive' ? 'contentActive' : 'contentExit'}`}>{props.content}</div>
+        <div className={`${classes.content} ${props.className==='navActive' ? 'contentActive' : 'contentExit'}`}>
+          <div className={classes.contentContainer}>
+            <div className={`${classes.templateBlock} ${classes.harvardTemplateBlock}`}>
+              
+            </div>
+            <div className={`${classes.templateBlock} ${classes.mitTemplateBlock}`}>
+
+            </div>
+            <div className={`${classes.templateBlock} ${classes.modernTemplateBlock}`}>
+
+            </div>
+          </div>
+        </div>
     </div>
   )
 }

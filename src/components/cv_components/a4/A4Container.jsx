@@ -4,7 +4,7 @@ import classes from './a4container.module.css'
 
 function A4Container(props) {
   return (
-    <div className={classes.a4container}>
+    <div className={`${classes.a4container} a4Container`} style={{...props.style}}>
         {props.children}
     </div>
   )

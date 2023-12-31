@@ -5,8 +5,8 @@ function TitleDate(props) {
     const { title, date } = props
   return (
     <FlexBox style={{'justifyContent': 'space-between'}} direction = 'row'>
-        <p>{title}</p>
-        <p>{date}</p>
+        <p style={{textTransform: props.uppercase ? 'uppercase' : '', ...props.style}}>{title}</p>
+        <p style={{...props.style}}>{date}</p>
     </FlexBox>
   )
 }

@@ -9,7 +9,9 @@ import ExistingData from '../existing_data/ExistingData'
 
 function SelectiveAdditional(props) {
     const { onAdditionalValue: nextAdditional } = props
+    const { log: l } = console
     const currentPage = useSelector(state=>state.bioData.currentForm)
+    // l(currentPage)
     const currentPageLowerCase = currentPage[0].toLowerCase() + currentPage.slice(1)
     const currentPageFromStore = useSelector(state=>state.bioData.data[currentPageLowerCase])
     const dispatch = useDispatch()
@@ -63,8 +65,8 @@ function SelectiveAdditional(props) {
     }
   return ( <>
             { (existing || currentPageFromStore.length > 0) && <ExistingData onAddMore={addMoreHandler} target={currentPageLowerCase} onClick={existingItemHandler}/>} 
-            { (addMore || nextAdditional || !currentPageFromStore.length > 0) && <FlexBox key={`${currentPage}`} style={{'alignItems': 'start', border: '1px solid gray', marginBottom: '2rem', padding: '2rem', 'borderRadius': '10px'}}>
-                <FlexBox direction='row' width='100'>
+            { (addMore || nextAdditional || !currentPageFromStore.length > 0) && <FlexBox key={`${currentPage}`} style={{'alignItems': 'start', marginBottom: '2rem', padding: '2rem', 'borderRadius': '10px'}}>
+                <FlexBox width='100'>
                     <LabelInput id='name' labelName='Add a heading' name='name' onChange={(e)=>valueChangeHandler(e, currentPage)} value={value.name}/>
                     <LabelDate id='date' labelName='Month and Year of completion' name="date" onChange={(e)=>valueChangeHandler(e, currentPage)} value={value.date && value.date}/>
                 </FlexBox >

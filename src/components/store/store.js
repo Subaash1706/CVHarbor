@@ -1,14 +1,14 @@
 import { configureStore, createSlice, current } from '@reduxjs/toolkit'
 
-const dummyPersonalData = { name: 'Name', secondName: '',  email: 'samplemail@email.com', phone: '+9112345677890', linkedIn: 'user@LinkedIn.com'}
+const dummyPersonalData = { name: 'Name', secondName: 'Second name',  email: 'samplemail@email.com', phone: '+9112345677890', linkedIn: 'user@LinkedIn.com'}
 const dummyEducationData = [
     { name: 'Institute name 1',  course: 'Course name 1', stream: 'stream 1', selector: 'GPA', grade: 9.04, start_date: 'YYYY-MM',end_date: 'YYYY-MM', accomplishments: ['Achievement 1', 'Achievement 2', 'Achievement 3'] },
-    { name: 'Institute name 2', course: 'Course name 2', stream: 'stream 2', selector: 'Percentage',  grade: 80.4, start_date: 'YYYY-MM', end_date: 'YYYY-MM',accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3\n' }
+    { name: 'Institute name 2', course: 'Course name 2', stream: 'stream 2', selector: 'Percentage',  grade: 80.4, start_date: 'YYYY-MM', end_date: 'YYYY-MM',accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3' }
 ]
 const dummySkills = [ 'Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 'Skill 5']
 const dummyXpDetails = [
-    { name: 'Company name', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3\n' }, 
-    { name: 'Company name 2', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3\n' }
+    { name: 'Company name', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3' }, 
+    { name: 'Company name 2', role: 'Job role', start_date: 'YYYY-MM', end_date: 'YYYY-MM', accomplishments: 'Achievement 1\n Achievement 2\n Achievement 3' }
 ]
 
 const formPage = ['Personal Info', 'Education', 'Skills', 'Experience', 'Additional']
@@ -39,7 +39,15 @@ function updateCurrentPage(state, action){
 function updatePagesArray(state, action){
     state.allSections.push(...action.payload)
 }
-
+function updateSkippedSections(state, action){
+    const existing = state.skippedSections.find(item=>item===action.payload)
+    if(!existing) state.skippedSections.push(action.payload)
+    else return
+}
+function setCurrentTemplate(state, action){
+    if(action.payload.chosenTemplate) state.selectedTemplate.category = action.payload.chosenTemplate
+    else state.selectedTemplate.templateNumber = action.payload.templateNumber
+}
 const bioData = createSlice({
     name: 'bioData',
     initialState: {
@@ -58,8 +66,11 @@ const bioData = createSlice({
         volunteering: []
     }, 
     allSections: formPage,
-    currentForm: formPage[0]}, 
-    reducers:{ updateBioData, updateCurrentPage, updatePagesArray, replaceBioData }
+    currentForm: formPage[0], 
+    skippedSections: [], 
+    selectedTemplate: { category: 'har', templateNumber: ''}
+}, 
+    reducers:{ updateBioData, updateCurrentPage, updatePagesArray, replaceBioData, updateSkippedSections, setCurrentTemplate }
 })
 
 const store = configureStore( { reducer: { 'bioData': bioData.reducer } } )

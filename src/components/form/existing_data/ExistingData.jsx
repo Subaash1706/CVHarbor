@@ -14,7 +14,7 @@ function ExistingData(props) {
         { target && target.map((item, index)=>{
             const { name, secondName, email, phone, linkedIn, course, stream, grade, start_date, end_date, id } = item;
             return(
-                    <FlexBox key={index} style={{border: '1px solid gray', alignItems: 'start', padding: '15px', 'position': 'relative', margin: '8px'}} width='100'>
+                    <FlexBox key={index} style={{border: '1px solid gray', alignItems: 'start', padding: '15px', 'position': 'relative', margin: '8px', backgroundColor:'white', borderRadius: '8px', boxShadow: '0px 0px 15px rgba(0 ,0, 0, 0.05)', overflow: 'hidden'}} width='120'>
                         <strong style={{'fontSize': '1.5rem'}}>{name}&nbsp;{ secondName && secondName }</strong>
                         {(course || email ) && <p>{course || email}, {course && stream}</p>}
                         {(grade || phone) && <p>{(grade && `Grade/Percentage: ${grade}`) || phone}</p>}
@@ -25,9 +25,9 @@ function ExistingData(props) {
                             <div onClick={(e)=>props.onClick(e, id)}>
                                 <img id='edit' src={editSvg} alt="Edit entered info" />
                             </div>
-                            <div onClick={(e)=>props.onClick(e, id)}>
+                            {props.target !== 'personal' && <div onClick={(e)=>props.onClick(e, id)}>
                                 <img id='delete' src={deleteSvg} alt="Delete current info" />
-                            </div>
+                            </div>}
                         </div>
                     </FlexBox>
             )

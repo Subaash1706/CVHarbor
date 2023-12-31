@@ -7,6 +7,7 @@ import LabelDate from '../form_components/LabelDate'
 import { useDispatch, useSelector } from 'react-redux'
 import { bioActions } from '../../store/store'
 import ExistingData from '../existing_data/ExistingData'
+import NextContainer from '../NextContainer'
 
 function Education(props) {
     const dispatch = useDispatch();
@@ -74,11 +75,24 @@ function Education(props) {
             dispatch(bioActions.replaceBioData({ education: dupe }))
         }
     }
+    function togglePage(e){
+        if(e.target.id === 'previous') dispatch(bioActions.updateCurrentPage({direction: '-1'}))
+        else if(e.target.id === 'next') dispatch(bioActions.updateCurrentPage({direction: '1'}))
+    }
     const courseArr = ['Select Course', 'High School education', 'Higher secondary school educaton', 'BTech', 'BE', 'BSc', 'Bsc(Hons)', 'BArch', 'BCom', 'BCA', 'BBA', 'MTech', 'ME', 'MSc', 'MCom', 'MCA', 'MBA' ]
   return (
     <div className='formSectionContainer'>
+        <FlexBox direction='row' style={{justifyContent: 'space-between'}} >
+            <div className='heading'>
+                Education
+            </div>
+            <center>
+                <button onClick={submitHandler} disabled={!validity} className='proceedButton'>Save</button>
+            </center>
+        </FlexBox>
         {eduDataFromStorer.length > 0 && <ExistingData onAddMore = {addItemHandler} target='education' onClick={ existingItemHandler }/>}
-        {(addMore || !eduDataFromStorer.length > 0) && <><div className='heading'>Education Section</div>
+        {(addMore || !eduDataFromStorer.length > 0) && <> 
+
         <FlexBox style={{alignItems: 'start'}}>
             <LabelInput id='Name of the Institute' placeholder='Institute' labelName='Name of the Institute'  name='name' onChange={valueChangeHandler} value={value.name}/>
             <FlexBox direction = 'row' width = '100'>
@@ -89,7 +103,7 @@ function Education(props) {
                 <SelectorLabel id='grade' labelName='Choose category' options={['Choose Percentage/CGPA', 'Percentage', 'GPA']} name='selector' onChange={valueSelectionHandler} defaultValue={value.selector ? courseArr.findIndex(item=>item===value.selector) : 0}/>
                 <LabelInput id='grade' placeholder='Grade/Percentage' labelName='Grade/Percentage' type='number' name='grade' onChange={valueChangeHandler} value={value.grade}/>
             </FlexBox>
-            <FlexBox direction='row' width = '100'>
+            <FlexBox width = '100'>
                 <LabelDate id='startDate' labelName='Start date' name='start_date' onChange={valueChangeHandler} value={value.start_date}/>
                 <LabelDate id='endDate' labelName='End date' disabled={currentEducation} name='end_date' onChange={valueChangeHandler} value={value.end_date}/>
             </FlexBox>
@@ -102,13 +116,6 @@ function Education(props) {
                 <textarea name="accomplishments" id="accomplishments" placeholder='Hit Enter for new bullet point' onChange={valueChangeHandler} value={value.accomplishments && value.accomplishments} className='textArea' ></textarea>
             </FlexBox>
         </FlexBox></> }
-        <FlexBox direction='row'>
-            <button onClick={submitHandler} disabled={!validity}>Save</button>
-        </FlexBox>
-        <center className='nextContainer'>
-            <button onClick={()=>dispatch(bioActions.updateCurrentPage({direction: '-1'}))}>Back</button>
-            <button onClick={()=>dispatch(bioActions.updateCurrentPage({direction: '1'}))}>Next Section</button>
-        </center>
     </div>
 
   )
