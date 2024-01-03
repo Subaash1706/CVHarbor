@@ -1,9 +1,34 @@
 .a4container{
-    max-height: 100vh;
-    width: 60%;
-    padding-block: 2rem;
-    margin-top: 1.5rem;
-    overflow-y: scroll;
-    scale: 1;
-    scrollbar-gutter: stable;
+    position: relative;
+    top: 0;
+    right: 10px;
+    overflow: auto;
+    min-height: 100%;
+    width: 55%;
+    /* max-width: 100vw; */
+    background-color: lightgoldenrodyellow;
+    -webkit-mask: linear-gradient(to bottom,  white 90%, transparent);
+    mask: linear-gradient(to bottom,  white 90%, transparent);
+}
+.backButton{
+    font-family: 'poppins';
+    position: fixed;
+    left: 15px;
+    top: 10%;
+    /* border: solid; */
+    background-color: peachpuff;
+    padding: 15px;
+    font-size: 1.5rem;
+    border-radius: 35px;
+    cursor: pointer;
+    border: 5px solid transparent;
+}
+.backButton:hover{
+    background-color: transparent;
+    border: 5px solid peachpuff;
+}
+.backButton img{
+    vertical-align: middle;
+    transform: rotateZ(180deg);
+    margin-right: 8px;
 }

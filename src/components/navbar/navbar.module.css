@@ -6,7 +6,7 @@
     text-align: center;
     min-width: 100vw;
     transition: all 500ms;
-    z-index: 199;
+    z-index: 300;
  }
 .navbarContainer{
     font-family: 'poppins';
@@ -133,6 +133,10 @@
     padding: 8px 2rem;
     background-color: lightblue;
     margin-left: 1rem;
+}
+.expandedNavPrint:disabled{
+    pointer-events: none;
+    cursor: not-allowed;
 }
 @keyframes shake {
     from{

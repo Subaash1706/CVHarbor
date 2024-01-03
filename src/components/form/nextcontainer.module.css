@@ -2,14 +2,14 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 50%;
+    width: 40%;
     height: 6rem;
     padding: 5px 2rem 0px 0px;
     display: flex;
     justify-content: end;
     align-items: center;
-    z-index: 500;
-    background: repeating-linear-gradient(45deg,rgba(0, 128, 0, 0.1) 0,rgba(0, 128, 0, 0.1) 20px, transparent 20px, transparent 40px);
+    z-index: 250;
+    /* background: repeating-linear-gradient(45deg,rgba(0, 128, 0, 0.1) 0,rgba(0, 128, 0, 0.1) 20px, transparent 20px, transparent 40px); */
     border-radius: 20px;
 }
 .nextContainer button{

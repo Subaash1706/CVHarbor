@@ -1,4 +1,6 @@
 .number{
+    font-family: 'poppins';
+    font-weight: 900;
     position: absolute;
     right: 0;
     font-size: 5rem;

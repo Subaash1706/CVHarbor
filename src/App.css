@@ -3,11 +3,12 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 13px;
+    scrollbar-width: thin!important;
     /* scrollbar-gutter: stable; */
 }
 body{
-    background-color: palegreen;
-    background-color: #CDFAD5;
+    /* background-color: palegreen; */
+    /* background-color: #CDFAD5; */
 }
 hr{
     margin-bottom: 6px;
@@ -26,8 +27,8 @@ hr{
     font-family: 'Poppins';
     padding: 4rem;
     width: 100%;
-    /* border: solid; */
-    /* border-radius: 25px; */
+    /* border: solid;
+    border-radius: 50px; */
 }
 .formSectionContainer input, .formSectionContainer select, textarea{
     position: relative;
@@ -35,9 +36,10 @@ hr{
     padding: 15px;
     margin: 8px 0px 15px 0px;
     border-radius: 15px;
+    border-radius: 10px;
     border: 1px solid gray;
     width: 100%;
-    box-shadow:5px 5px 0px green;
+    box-shadow:5px 5px 0px black;
     transition: all 250ms;
 }
 input:focus, select:focus, textarea:focus{
@@ -48,6 +50,11 @@ input:focus, select:focus, textarea:focus{
     /* outline: 2px dashed rgba(0, 128, 0, 0.486); */
     /* outline-offset: 2px; */
 }
+input:disabled{
+    background-color: rgba(128, 128, 128, 0.116);
+    translate: 5px 5px;
+    box-shadow: 0px 0px 0px transparent;
+}
 .formSectionContainer option{
     font-size: 1.55rem;
     padding: 5px;
@@ -55,14 +62,14 @@ input:focus, select:focus, textarea:focus{
 .formSectionContainer input[type='checkbox']{
     box-shadow: 0px 0px 0px transparent;
     scale: 1.75;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 .formSectionContainer input[type='checkbox']:focus{
     translate: 0px 0px;
 }
 
 .formSectionContainer label{
-    /* display: none; */
+    display: none;
     font-size: 1.05rem;
     color: gray;
     color: black;
@@ -174,17 +181,58 @@ input:focus, select:focus, textarea:focus{
     100%{ transform: scale( 0, 1)}
 }
 .printable{
-    width: 505px;
+    /* width: 505px; */
+    max-width: 505px;
     aspect-ratio: 1/1.414;
+    scale: 75%;
     border: 0.5px solid gray;
+    border-radius: 15px;
     background-color: white;
     margin: auto;
+    position: relative;
+    overflow: hidden;
     /* background-color: yellow; */
+}
+.printablePreview{
+    position: absolute;
+    inset: 0;
+    background: rgba(176, 141, 110, 0.44);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.printablePreview div{
+    width: 7rem;
+    aspect-ratio: 1;
+    background-color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor:pointer;
+    transition: all 250ms;
+    transform-origin: center;
+}
+.printablePreview img{
+    width: 30px;
+    aspect-ratio: 1;
+}
+.printablePreview div:hover{
+    transform: rotateZ(-225deg) scale(1.05);
+}
+.printPreviewView{
+    scale: 1.25;
+    top: 80px;
+    position: relative;
+    margin: auto;
+    transform-origin:center top;
+}
+.preview{
+    background-color: red;
 }
 @media screen and (width < 1024px){
     main{
         display: flex;
-        flex-direction: column;
+        flex-direction: column!important;
         justify-content: center;
     }
 }
@@ -207,5 +255,7 @@ input:focus, select:focus, textarea:focus{
         aspect-ratio: 1/1.414;
         scale: 2;
         transform-origin: left top;
+        border: 0px solid transparent;
+        border-radius: 0px;
     }
 }
