@@ -48,6 +48,9 @@ function setCurrentTemplate(state, action){
     if(action.payload.chosenTemplate) state.selectedTemplate.category = action.payload.chosenTemplate
     else state.selectedTemplate.templateNumber = action.payload.templateNumber
 }
+function setPagePreviewStatus(state, action){
+    state.pagePreviewStatus = action.payload
+}
 const bioData = createSlice({
     name: 'bioData',
     initialState: {
@@ -68,9 +71,10 @@ const bioData = createSlice({
     allSections: formPage,
     currentForm: formPage[0], 
     skippedSections: [], 
+    pagePreviewStatus: false,
     selectedTemplate: { category: 'har', templateNumber: ''}
 }, 
-    reducers:{ updateBioData, updateCurrentPage, updatePagesArray, replaceBioData, updateSkippedSections, setCurrentTemplate }
+    reducers:{ updateBioData, updateCurrentPage, updatePagesArray, replaceBioData, updateSkippedSections, setCurrentTemplate, setPagePreviewStatus }
 })
 
 const store = configureStore( { reducer: { 'bioData': bioData.reducer } } )
