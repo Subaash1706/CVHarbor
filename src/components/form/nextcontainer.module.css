@@ -9,11 +9,14 @@
     justify-content: end;
     align-items: center;
     z-index: 250;
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(5px);
     /* background: repeating-linear-gradient(45deg,rgba(0, 128, 0, 0.1) 0,rgba(0, 128, 0, 0.1) 20px, transparent 20px, transparent 40px); */
     border-radius: 20px;
 }
 .nextContainer button{
     background-color: rgb(0, 28, 0);
+    background-color: #176B87;
     color: white;
     font-size: 1.5rem;
     font-family: 'poppins';
@@ -36,15 +39,16 @@
 }
 .nextContainer button:hover{
     background-color: white;
-    color: rgb(0, 28, 0);
+    color: #176B87;
     font-weight: 900;
-    border: 4px solid rgb(0, 28, 0);
+    border: 4px solid #176B87;
 }
 .nextContainer .previous>img{
     transform: rotateZ(0deg);
 }
 .nextContainer button:hover img{
-    filter: invert();
+    /* filter: invert(); */
+    background-color: #176B87;
     width: 2.2rem;
     transform: rotateZ(0deg);
 }
@@ -64,14 +68,15 @@
     transform: rotateZ(-240deg);
 }
 .nextContainer button:disabled{
-    background-color: rgb(40, 52, 40);
-    color: gray;
+    background-color: #1f5c70a2;
+    color: rgb(174, 174, 174);
     pointer-events: none;
     translate: 0px;
 }
 .nextContainer button:disabled img{
     width: 0;
 }
+
 @media screen and (width<580px) {
     .nextContainer{
         justify-content: center;

@@ -6,27 +6,24 @@
     font-family: 'poppins';
     padding: 8px;
     position: relative;
-    width: 45%;
-    height: 45%;
+    max-width: 45%;
     background-color: white;
     margin: auto;
     top: 50%;
     translate: 0px -50%;
-    border-radius: 20px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 .modalHeading{
     font-size: 2.5rem;
-    border-bottom: 1px solid gray;
     padding: 5px;
     font-weight: 900;
     text-align: center;
 }
 .modalBody{
-    font-size: 1.4rem;
-    padding: 5px;
+    font-size: 1.25rem;
 }
 .modalButtonContainer{
     display: flex;
@@ -36,13 +33,12 @@
 }
 .modalButtonContainer button{
     font-family: 'poppins';
-    font-size: 1.25rem;
-    margin: 5px;
+    font-size: 1.2rem;
     margin-right: 0px;
     padding-right: 10px;
     padding-left: 10px;
-    padding-block: 10px;
-    border-radius: 15px;
+    padding-block: 8px;
+    border-radius: 5px;
     background-color: rgb(0, 28, 0);
     color: white;
     font-weight: lighter;
@@ -56,7 +52,12 @@
     cursor: not-allowed
 }
 .modalButtonContainer .cancel{
-    background-color: rgb(136, 3, 3);
+    background: none;
+    font-weight: 900;
+    color: rgb(112, 112, 112);
+}
+.modalButtonContainer .cancel:hover{
+    color: black;
 }
 .modalButtonContainer .proceed{
     background-color: rgb(1, 26, 1);
@@ -66,13 +67,87 @@
     height: auto;
 }
 input[type='checkbox']{
-    text-align: left;
-    float: left;
     scale: 1.5;
+    accent-color: orange;
     translate: 0px 0px;
 }
 .skipSectionLabel{
-    padding-left: 8px;
+    display: inline-block;
+    font-size: 0.85rem;
+    padding-left: 10px;
+    translate: 0% -15%;
     vertical-align: middle;
-
+}
+.contentWrapper{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 1.5rem;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-left: 1rem;
+}
+.illustrationContainer{
+    background-image: url(../../assets/gifs/skipGif.gif);
+    width: 30vw;
+    aspect-ratio: 1;
+    background-size: 125%;
+    background-position: bottom center;
+    border-radius: 50%;
+}
+@media screen and (width<1024px){
+    .contentWrapper{
+        flex-direction: column;
+    }
+    .content{
+        justify-content: center;
+        align-items: center;
+        max-width: 85%;
+        text-align: center;
+    }
+    .illustrationContainer{
+        width: 20vw;
+    }
+    .modalButtonContainer{
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+@media screen and (width < 775px) {
+    input[type='checkbox']{
+        scale: 1;
+    }
+    .skipSectionLabel{
+        padding-left: 5px;
+    }
+}
+@media screen and (width<640px){
+    .modalContainer{
+        max-width: 65%;
+    }
+    .content{
+        max-width: 100%;
+    }
+}
+@media screen and ( width<481px) {
+    .modalContainer{
+        max-width: 80%
+    }
+    .illustrationContainer{
+        width: 15rem;
+    }
+}
+@media screen and (width<300px) {
+    .illustrationContainer{
+        width: 10rem;
+    }
+    .skipSectionLabel{
+        padding-left: 0px;
+    }
 }

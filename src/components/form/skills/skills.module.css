@@ -18,7 +18,6 @@
 }
 .previewWindow{
     flex: 1;
-    /* border: 1px solid gray; */
     max-height: 8rem;
     /* width: 15vw; */
     padding: 8px;

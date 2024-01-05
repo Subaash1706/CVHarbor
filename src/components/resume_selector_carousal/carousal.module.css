@@ -67,11 +67,6 @@
 .templatePreview:hover img{
     box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.652);
 }
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
 .loader {
     width: 50px;
     --b: 8px;
@@ -88,26 +83,9 @@
   }
   @keyframes l5 {to{transform: rotate(.5turn)}}
   
-/* .cursor{
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 1.5rem;
-    background-color: lightseagreen;
-    width: 6rem;
-    text-align: center;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    color: white;
-    z-index: 1000;
-    translate: -100% -350%;
-    transition: all 150ms;
-} */
 @media screen and (width < 1024px) and (width >= 769px){
     .templateSelectorContainer h1{
         max-width: 90vw;
-        /* background-color: red; */
     }
     .templateLinkContainer li > a{
         padding: 0px;

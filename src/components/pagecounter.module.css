@@ -16,13 +16,13 @@
     text-align: left;
     position: fixed;
     left: 5%;
-    /* border: solid; */
+    user-select: none;
 }
 
 .pageSelectorSection::after{
     content: 'of';
     font-weight: 400;
-    color: gray;
+    color: #3aa6b9c4;
     display: inline-block;
     margin: 1.55rem;
     position: absolute;
@@ -34,24 +34,22 @@
     padding: 0px 0.75rem;
 }
 .currentPage{
-    /* display: inline-block; */
     translate: 0px calc(8.24*7rem);
     transition: all 500ms;
     margin-right: 75px;
     text-align: center;
+    color: #164B60;
 }
 .currentPage div{
     transition: all 500ms;
 }
 .currentPage span, .pageSelectorTotalPages{
-    /* border: solid; */
-    /* font-style: italic; */
     font-weight: var(--FONT-WEIGHT);
     font-size: var(--FONT-SIZE);
 }
 .pageSelectorTotalPages{
-    /* border: solid; */
     text-align: left;
+    color: #164B60;
 }
 .currentPage span{
     max-height: var(--FONT-SIZE);

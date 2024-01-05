@@ -3,22 +3,28 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 13px;
-    scrollbar-width: thin!important;
-    /* scrollbar-gutter: stable; */
-}
-body{
-    /* background-color: palegreen; */
-    /* background-color: #CDFAD5; */
 }
 hr{
     margin-bottom: 6px;
 }
 .formSectionContainer .heading{
-    font-size: 3rem;
-    /* position: fixed; 
-    left: 0px;
-    top: 6rem;
-    background: linear-gradient(to right, bisque 65%, transparent 95%); */
+    font-size: 4rem;
+    font-weight: 550;
+    background-color: #E9B384;
+    width: 100%;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    margin-block: 1rem;
+    border-radius: 15px;
+    border: 5px solid transparent;
+    transition: all 250ms;
+}
+.heading:hover{
+    background-color: transparent;
+    border: 5px solid #E9B384;
+    color: #E9B384;
+    user-select: none;
 }
 .subHeading{
     font-size: 1.75rem;
@@ -27,28 +33,23 @@ hr{
     font-family: 'Poppins';
     padding: 4rem;
     width: 100%;
-    /* border: solid;
-    border-radius: 50px; */
 }
 .formSectionContainer input, .formSectionContainer select, textarea{
     position: relative;
-    font-size: 1.25rem;
-    padding: 15px;
+    font-size: 1.5rem;
+    padding: 20px;
     margin: 8px 0px 15px 0px;
-    border-radius: 15px;
     border-radius: 10px;
-    border: 1px solid gray;
+    border: 1px solid rgba(128, 128, 128, 0.492);
     width: 100%;
-    box-shadow:5px 5px 0px black;
+    background-color: #FFFFDD;
+    backdrop-filter: blur(5px);
+    box-shadow: 5px 5px 0px #E9B384;
+    transform-origin: bottom center;
     transition: all 250ms;
 }
-input:focus, select:focus, textarea:focus{
-    translate: 5px 5px;
-    box-shadow: 0px 0px 0px green;
-    border: 1px solid gray;
-    outline: none;
-    /* outline: 2px dashed rgba(0, 128, 0, 0.486); */
-    /* outline-offset: 2px; */
+input::selection{
+    background-color: #E9B384;
 }
 input:disabled{
     background-color: rgba(128, 128, 128, 0.116);
@@ -60,16 +61,22 @@ input:disabled{
     padding: 5px;
 }
 .formSectionContainer input[type='checkbox']{
-    box-shadow: 0px 0px 0px transparent;
+    box-shadow: 0px 0px 0px #E9B384;
+    transform: translate(50%, 25%);
     scale: 1.75;
-    /* vertical-align: middle; */
 }
 .formSectionContainer input[type='checkbox']:focus{
     translate: 0px 0px;
 }
-
+.formSectionContainer input::placeholder{
+    color: rgb(101, 101, 101);
+}
+.formSectionContainer input:focus, .formSectionContainer select:focus, .formSectionContainer input:active, .formSectionContainer select:active{
+    translate: 5px 5px;
+    box-shadow: 0px 0px 0px transparent;
+    outline: 0px solid transparent;
+}
 .formSectionContainer label{
-    display: none;
     font-size: 1.05rem;
     color: gray;
     color: black;
@@ -84,8 +91,7 @@ input:disabled{
     margin: 16px;
 }
 .nextContainer{
-    /* border: solid; */
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 60%;
@@ -108,14 +114,10 @@ input:disabled{
     position: relative;
     height: 20%;
     background-color: peachpuff;
-    /* background-color: #FFD4B2; */
 
 }
 .navActive{  
-    /* opacity: 1; */
-    /* visibility: visible;  */
     transform-origin: left;
-    /* transition: opacity 450ms linear; */
     animation: enter 450ms linear 0s backwards;
 }
 .exit{
@@ -136,21 +138,20 @@ input:disabled{
 .contentActive{
     opacity: 1;
     visibility: visible;
-    /* transition: opacity 550ms linear; */
 }
 .contentExit{
     opacity: 0;
     visibility: hidden;
-    /* transition: opacity 550ms linear; */
 }
 .proceedButton, .addmoreButton{
     font-family: 'poppins';
+    width: 100%;
     background-color: transparent;
     color: #186f65;
     font-weight: 900;
     border: 3px solid #186F65;
     border-radius: 15px!important;
-    padding-block: 13px!important;
+    padding-block: 20px!important;
     transition: all 500ms;
 }   
 .proceedButton:hover, .addmoreButton:hover{
@@ -181,8 +182,7 @@ input:disabled{
     100%{ transform: scale( 0, 1)}
 }
 .printable{
-    /* width: 505px; */
-    max-width: 505px;
+    width: 505px;
     aspect-ratio: 1/1.414;
     scale: 75%;
     border: 0.5px solid gray;
@@ -190,8 +190,6 @@ input:disabled{
     background-color: white;
     margin: auto;
     position: relative;
-    overflow: hidden;
-    /* background-color: yellow; */
 }
 .printablePreview{
     position: absolute;
@@ -217,7 +215,7 @@ input:disabled{
     aspect-ratio: 1;
 }
 .printablePreview div:hover{
-    transform: rotateZ(-225deg) scale(1.05);
+    transform: rotateZ(-45deg) scale(1.05);
 }
 .printPreviewView{
     scale: 1.25;
@@ -238,24 +236,27 @@ input:disabled{
 }
 @media print {
     main, body{
-        width: 0px;
-        height: auto;
+        width: auto;
     }
     .a4Container{
         display: block;
-        /* visibility: visible; */
-        width: 100%!important;
+        min-width: 100%!important;
         padding: 0;
         margin: 0;
     }
-    .printable{
+    .printable {
         display: block;
-        border: 2px solid black;
-        width: 505px;
+        width: 550px; 
         aspect-ratio: 1/1.414;
-        scale: 2;
         transform-origin: left top;
         border: 0px solid transparent;
         border-radius: 0px;
+        margin: 0;
+        padding: 0;
+        scale: 2;
+    }
+    @page{
+        size: A4;
+        margin: 15mm 0;
     }
 }

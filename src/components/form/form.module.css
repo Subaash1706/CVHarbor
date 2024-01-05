@@ -2,8 +2,8 @@ form{
     width: 100%;
     display: flex;
     position: relative;
-    padding-bottom: 2rem;
-    /* border: solid; */
+    max-height: 80vh;
+    overflow-y: auto;
 }
 .pageSelector{
     display: inline;
