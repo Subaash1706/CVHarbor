@@ -1,10 +1,12 @@
 import React from 'react'
-import A4sheet from './A4sheet'
 import classes from './a4container.module.css'
+import { useSelector } from 'react-redux'
 
 function A4Container(props) {
+  const pagePreviewStatus = useSelector(state=>state.bioData.pagePreviewStatus)
+  const styles = {}
   return (
-    <div className={`${classes.a4container} a4Container`} style={{...props.style}}>
+    <div className={`${classes.a4container} a4Container`} style={{...props.style, ...(pagePreviewStatus ? styles : '') }}>
         {props.children}
     </div>
   )

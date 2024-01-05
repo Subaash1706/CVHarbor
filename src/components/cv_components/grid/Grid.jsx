@@ -1,5 +1,4 @@
 import React from 'react'
-import classes from './grid.module.css'
 
 function Grid(props) {
   return (

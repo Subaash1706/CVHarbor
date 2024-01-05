@@ -6,7 +6,6 @@ import LabelDate from '../form_components/LabelDate'
 import { useDispatch, useSelector } from 'react-redux'
 import { bioActions } from '../../store/store'
 import ExistingData from '../existing_data/ExistingData'
-import NextContainer from '../NextContainer'
 
 
 function Xp(props) {
@@ -26,7 +25,6 @@ function Xp(props) {
     }, [ value ])
     function valueChangeHandler(e){
         setValue(prev=>{return{...prev, [e.target.name]: e.target.value}})
-        // setValidity(Object.values(value).every(Boolean))
         if( value.name && value.role ) setValue(prev=>{
             const newId = `${prev.name.slice(0, 5)}${prev.role.slice(0, 4)}`; 
             return { ...prev, id: newId};
@@ -70,48 +68,33 @@ function Xp(props) {
             dispatch(bioActions.replaceBioData({ xp: dupe }))
         }
     }
-    function togglePage(e){
-        if(e.target.id==='previous') dispatch(bioActions.updateCurrentPage({direction: '-1'}))
-        else if(e.target.id==='next') dispatch(bioActions.updateCurrentPage({direction: '1'}))
-    }
   return (
     <div className='formSectionContainer'>
         <FlexBox direction='row' style={{justifyContent: 'space-between'}}>
         <div className='heading'>
             Experience
         </div>    
-        <center>
-            <button onClick={submitHandler} disabled={!validity} className='proceedButton'>Save</button>
-        </center>
         </FlexBox>
 
         {xpFromStore.length > 0 && <ExistingData onAddMore = {addItemHandler} target='xp' onClick={existingItemHandler}/>}
         {( addMore || !xpFromStore.length > 0 ) && <FlexBox style={{alignItems: 'start'}}>
-            <FlexBox direction = 'row' width = '100'>
                 <LabelInput id='Name of the Company' placeholder='Company' labelName='Name of the Company'  onChange={valueChangeHandler} name='name' value={value.name}/>
-            </FlexBox>
-            <FlexBox direction = 'row' width = '100'>
+
                 <LabelInput id='Job role' placeholder='Job role' labelName='Job role' onChange={valueChangeHandler} name='role' value={value.role}/>
-            </FlexBox>
-            <FlexBox width = '100'>
+
                 <LabelDate id='startDate' labelName='Start date' onChange={valueChangeHandler} name='start_date' value={value.start_date}/>
                 <LabelDate id='endDate' labelName='End date' disabled={currentWork} onChange={valueChangeHandler} name='end_date' value={value.end_date}/>
-            </FlexBox>
+
             <FlexBox direction='row' style={{'marginLeft': '1rem'}}>
                 <input type='checkbox' id='currentWork' onChange={change} name='end_date'/>
                 <label htmlFor="currentWork" style={{'marginLeft': '1rem'}}>Currently working</label>
             </FlexBox>
-            <FlexBox width='100' style={{'alignItems': 'start'}}>
                 <label htmlFor="accomplishments" style={{'textAlign': 'left', margin: '8px 0px', 'fontSize': '1.05rem'}}>Accomplishments / Achievements (optional)</label>
                 <textarea name="accomplishments" id="accomplishments" placeholder='Hit Enter for new bullet point' onChange={valueChangeHandler} value={value.accomplishments && value.accomplishments} className='textArea'></textarea>
+            <FlexBox>
+                <button onClick={submitHandler} disabled={!validity} className='proceedButton'>Save</button>
             </FlexBox>
         </FlexBox>}
-
-        {/* <NextContainer onClick={togglePage} back={true} next={true}/> */}
-        {/* <center className='nextContainer'>
-            <button onClick={()=>dispatch(bioActions.updateCurrentPage({direction: '-1'}))}>Back</button>
-            <button onClick={()=>dispatch(bioActions.updateCurrentPage({direction: '1'}))}>Next section</button>
-        </center> */}
     </div>
   )
 }

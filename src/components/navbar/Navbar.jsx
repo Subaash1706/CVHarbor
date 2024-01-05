@@ -1,51 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import classes from './navbar.module.css'
-import NavItem from './NavItem'
-import personSvg from '../../assets/svg/person_FILL1_wght400_GRAD0_opsz24.svg'
-import educationSvg from '../../assets/svg/school_FILL1_wght400_GRAD0_opsz24.svg'
-import skillSvg from '../../assets/svg/build_FILL1_wght400_GRAD0_opsz24.svg'
-import xpSvg from '../../assets/svg/work_FILL1_wght400_GRAD0_opsz24.svg'
-import addMoreSvg from '../../assets/svg/add_circle_FILL1_wght400_GRAD0_opsz24.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { bioActions } from '../store/store'
-import FlexBox from '../cv_components/flexbox/FlexBox'
-import Overlay from '../landing/Overlay'
-import { current } from '@reduxjs/toolkit'
 
 function Navbar(props) {
-    const [ navExpanded, setNavExpanded ] = useState(false)
     const [ toggleStatus, setToggleStatus ] = useState(false)
-    const data = useSelector(state=>state.bioData.data)
-    const currentTemplate = useSelector(state=>state.bioData.selectedTemplate)
     const templateNumber = useSelector(state=>state.bioData.selectedTemplate.templateNumber)
-    const { personal, education, skills, xp } = data
-    const page = useSelector(state=>state.bioData.allSections)
-    const restPages = page.slice( 5 )
-    function checkValidity(target){
-        console.log(target)
-      return Object.values(target).every(Boolean)
-    }
+    const pagePreviewStatus = useSelector(state=>state.bioData.pagePreviewStatus)
     const dispatch = useDispatch()
-    function navClickHandler(e){
-        props.onItemChoose(e.target.id);
-        dispatch(bioActions.updateCurrentPage({target: e.target.target}))
-    }
-    function navExpandFunction(){
-      setNavExpanded(prev=>!prev)
-    }
-    useEffect(()=>{
-      props.onNavExpanded(navExpanded)
-    }, [ navExpanded ])
-    useEffect(()=>{
-      if(props.landingPageStatus){  //put ! symbol at the front IMPORTANT
-          const navbar = document.querySelector('.navbarWrapper')
-          const nav = navbar.firstChild;
-          const brand = document.querySelector('.navbarBrand')
-          navbar.style.top = '0'
-          nav.style.borderRadius = '0%';
-          nav.style.width = '100%';
-      }
-    }, [ props.landingPageStatus ])
     function printHandler(status){
       props.printStatus(status)
       setTimeout(() => {

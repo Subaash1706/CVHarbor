@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Backdrop from './Backdrop'
 import classes from './modal.module.css'
-import FlexBox from '../cv_components/flexbox/FlexBox'
 import { useDispatch, useSelector } from 'react-redux'
 import { bioActions } from '../store/store'
-// import warning from '../../assets/images/others/warning.jpg'
-import CheckBoxLabel from '../form/form_components/CheckBoxLabel'
 
 function Modal(props) {
     const [ checkStatus, setCheckStatus ] = useState(false)
@@ -25,18 +22,25 @@ function Modal(props) {
         }
     }, [ proceed ])
     const skipped = useSelector(state=>state.bioData.skippedSections)
-    console.log(skipped)
+    // console.log(skipped)
   return (
     <Backdrop>
         <div className={classes.modalWrapper}>
             <div className={classes.modalContainer}>
-                <div className={classes.modalHeading}>{props.heading}Skip section</div>
-                <div className={classes.modalBody}>{props.content}
-                    You are about to skip this section. Upon skipping, this section will be removed from the Resume. Do you want to proceed ?
-                    <br />
+                <div className={classes.contentWrapper}>
+                    <div className={classes.illustrationContainer}>
+                        {/* <img src={skipGif} alt="" /> */}
+                    </div>
+                    <div className={classes.content}>
+                        <div className={classes.modalHeading}>{props.heading}Skip section</div>
+                        <div className={classes.modalBody}>{props.content}
+                            You are about to skip this section. Do you want to proceed ?
+                            <br />
+                        </div>
+                    </div>
                 </div>
                 <div className={classes.modalButtonContainer}>
-                        <div>
+                        <div className={classes.skipCheckBox}>
                             <input type="checkbox" id='skipSection' name='skipSection' onChange={(e)=>{setCheckStatus(e.target.checked)}} checked={checkStatus}/>
                             <label htmlFor="skipSection" id='skipSectionLabel' className={classes.skipSectionLabel}>Exclude current section from Resume</label>
                         </div>

@@ -4,7 +4,7 @@ import classes from './mod.module.css'
 import Heading from '../../../cv_components/heading/Heading'
 import useFetchBioFromStore from '../../../../hooks/useFetchBioFromStore'
 import Hr from '../../../cv_components/Hr'
-import image from '../../../../assets/images/image.png'
+import image from '../../../../assets/images/sample/avatar.jpg'
 import OutwardList from '../../../cv_components/outward_list/OutwardList'
 import { useSelector } from 'react-redux'
 

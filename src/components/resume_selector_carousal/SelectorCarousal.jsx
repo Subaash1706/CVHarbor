@@ -25,6 +25,7 @@ const SelectorCarousal = React.memo((props) => {
     return(
       <div className={classes.templateSelectorContainer}>
         <h1>Choose the desired template for your Resume</h1>
+        <div className={classes.searchGif}></div>
         <div className={classes.templateLinkWrapper}>
           <ul className={classes.templateLinkContainer}>
               <li onClick={templateChooseHandler} id='har'className={currentTemplate==='har' ? classes.active : ''}><a id='har' >Harvard templates</a></li>

@@ -1,7 +1,7 @@
 import React from 'react'
 import A4sheet from '../../../cv_components/a4/A4sheet'
 import classes from './modern.module.css'
-import image from '../../../../assets/images/image.png'
+import image from '../../../../assets/images/sample/avatar.jpg'
 import Heading from '../../../cv_components/heading/Heading'
 import Hr from '../../../cv_components/Hr'
 import useFetchBioFromStore from '../../../../hooks/useFetchBioFromStore'
@@ -12,7 +12,6 @@ const ModTemplate1 = React.forwardRef((props, ref) => {
     const bio = useFetchBioFromStore();
     const { personal, education, xp, skills, languages, ...rest } = bio;
     const skipped = useSelector(state=>state.bioData.skippedSections)
-    console.log(personal)
     function renderRest(obj){
         const objKeys = Object.keys(obj)
         return objKeys.map((item, ind)=>{
@@ -25,7 +24,7 @@ const ModTemplate1 = React.forwardRef((props, ref) => {
                         <ul style={{listStylePosition: 'inside'}}>{
                             obj[item].map((item, ind)=>{
                                 return(
-                                    <li style={{fontSize: '10px'}}>{item.name}</li>
+                                    <li style={{fontSize: '10px'}} key={ind}>{item.name}</li>
                                 )
                             })
                         }</ul>

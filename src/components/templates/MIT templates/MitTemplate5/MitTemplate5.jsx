@@ -47,7 +47,7 @@ const MitTemplate5 = React.forwardRef((props, ref) => {
                 <FlexBox centered={true}>
                     <Heading style={{fontSize: '14px'}}>{ personal.name }&nbsp;{personal.secondName && personal.secondName }</Heading>
                     <div>
-                        <span><a href={`mailto:${personal.email}`}>{personal.email}</a></span>
+                        <span><a href={`mailto:${personal.email}`}>{personal.email}</a></span><span>&nbsp;|&nbsp;</span>
                         <span>{personal.phone}</span>
                     </div>
                     <div>
@@ -64,7 +64,7 @@ const MitTemplate5 = React.forwardRef((props, ref) => {
             </section>
             {/* Education section */}
             {!skipped.includes('Education') &&<section style={{paddingTop: '8px'}}>
-                <Heading centered={true}>Career Objective</Heading>
+                <Heading centered={true}>Education</Heading>
                 <Hr />
                 {
                     education.map((item, ind)=>{
@@ -86,7 +86,7 @@ const MitTemplate5 = React.forwardRef((props, ref) => {
             </section>}
             {/* Skills Section */}
             {!skipped.includes('Skills') &&<section style={{paddingTop: '8px'}}>
-                <Heading centered={true}>Career Objective</Heading>
+                <Heading centered={true}>Professional Skills</Heading>
                 <Hr />
                 <OutwardList listItems={skills.flat()}/>
             </section>}

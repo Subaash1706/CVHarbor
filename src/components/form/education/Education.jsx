@@ -7,7 +7,6 @@ import LabelDate from '../form_components/LabelDate'
 import { useDispatch, useSelector } from 'react-redux'
 import { bioActions } from '../../store/store'
 import ExistingData from '../existing_data/ExistingData'
-import NextContainer from '../NextContainer'
 
 function Education(props) {
     const dispatch = useDispatch();
@@ -86,35 +85,27 @@ function Education(props) {
             <div className='heading'>
                 Education
             </div>
-            <center>
-                <button onClick={submitHandler} disabled={!validity} className='proceedButton'>Save</button>
-            </center>
         </FlexBox>
         {eduDataFromStorer.length > 0 && <ExistingData onAddMore = {addItemHandler} target='education' onClick={ existingItemHandler }/>}
         {(addMore || !eduDataFromStorer.length > 0) && <> 
 
         <FlexBox style={{alignItems: 'start'}}>
             <LabelInput id='Name of the Institute' placeholder='Institute' labelName='Name of the Institute'  name='name' onChange={valueChangeHandler} value={value.name}/>
-            <FlexBox direction = 'row' width = '100'>
                 <SelectorLabel id='Course' labelName='Course/Degree' options={courseArr} name='course' onChange={valueSelectionHandler} defaultValue={value.course ? courseArr.findIndex(item=>item===value.course) : 0}/>
                 <LabelInput id='Stream' placeholder='Stream' labelName='Stream' name='stream' onChange={valueChangeHandler} value={value.stream}/>
-            </FlexBox>
-            <FlexBox direction='row' width = '100'>
                 <SelectorLabel id='grade' labelName='Choose category' options={['Choose Percentage/CGPA', 'Percentage', 'GPA']} name='selector' onChange={valueSelectionHandler} defaultValue={value.selector ? courseArr.findIndex(item=>item===value.selector) : 0}/>
                 <LabelInput id='grade' placeholder='Grade/Percentage' labelName='Grade/Percentage' type='number' name='grade' onChange={valueChangeHandler} value={value.grade}/>
-            </FlexBox>
-            <FlexBox width = '100'>
                 <LabelDate id='startDate' labelName='Start date' name='start_date' onChange={valueChangeHandler} value={value.start_date}/>
                 <LabelDate id='endDate' labelName='End date' disabled={currentEducation} name='end_date' onChange={valueChangeHandler} value={value.end_date}/>
-            </FlexBox>
             <FlexBox direction='row' style={{'marginLeft': '1rem'}}>
                 <input type='checkbox' id='current' onChange={()=>setCurrentEducation(prev=>!prev)} name='end_date'/>
                 <label htmlFor="current" style={{'marginLeft': '1rem'}}>Currently studying</label>
             </FlexBox>
-            <FlexBox width='100' style={{'alignItems': 'start'}}>
                 <label htmlFor="accomplishments" style={{'textAlign': 'left', margin: '8px 0px', 'fontSize': '1.05rem'}}>Accomplishments / Achievements (optional)</label>
                 <textarea name="accomplishments" id="accomplishments" placeholder='Hit Enter for new bullet point' onChange={valueChangeHandler} value={value.accomplishments && value.accomplishments} className='textArea' ></textarea>
-            </FlexBox>
+                <FlexBox width='100'>
+                    <button onClick={submitHandler} disabled={!validity} className='proceedButton'>Save</button>
+                </FlexBox>
         </FlexBox></> }
     </div>
 

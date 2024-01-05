@@ -8,7 +8,6 @@ import Template2 from './harvard/template_2/Template2'
 import Template3 from './harvard/template_3/Template3'
 import Form from '../components/form/Form'
 import classes from './main.module.css'
-import Overlay from './landing/Overlay'
 import NextContainer from './form/NextContainer'
 import { bioActions } from './store/store'
 import Modal from './modal/Modal'
@@ -31,7 +30,6 @@ const Main = React.forwardRef((props, ref)=>{
   const [ openModal, setOpenModal ] = useState(false)
   const [ templateSelectionState, setTemplateSelectionState ] = useState(false)
   const [ closeModal, setCloseModal ] = useState(false);
-  const [ stayAtCurrentPage, setStayAtCurrentPage ] = useState(false)
   const dispatch = useDispatch();
   const allPagesArray = useSelector(state=>state.bioData.allSections)
   const currentPage = useSelector(state=>state.bioData.currentForm)
@@ -69,10 +67,6 @@ const Main = React.forwardRef((props, ref)=>{
   function modalTriggerHandler(data){
     setOpenModal(data)
   }
-  function templateSelectFn(data){
-    setTemplateSelectionState(data)
-  }
-
   useEffect(()=>{
     if(!currentTemplate) setTemplateSelectionState(true)
   }, [ currentTemplate ])
@@ -120,10 +114,6 @@ const Main = React.forwardRef((props, ref)=>{
 
   return (
     <main>
-        { props.onNavExpanded && <Overlay content='This is from navbar' /> }
-        {
-           createPortal(<Overlay content='This is from navbar' className={ toggleClass.join(' ') }/>, document.getElementById('expandedNavPortal'))
-        }
         {
            openModal && createPortal(<Modal onProceed={proceedHandler} onCancel={()=>{setOpenModal(false)}}/>, document.getElementById('modalPortal'))
         }
@@ -131,7 +121,6 @@ const Main = React.forwardRef((props, ref)=>{
           <><Form onItemChoose = { props.chosenItem }/> 
           <NextContainer onClick={togglePage} back={true} next={true} backDisabled={currentPageIndex+1 === 1} nextDisabled={currentPageIndex+1 === totalPages} onTriggerModal={modalTriggerHandler}/></>
        }
-        {/* <button onClick={handlePrint}>print</button> */}
         { !templateSelectionState &&
           <SelectorCarousal imageArray={(currentTemplate==='har' && harvardFileArray)||(currentTemplate==='mit' && mitFileArray)||(currentTemplate==='mod' && modernFileArray)}/>
         }

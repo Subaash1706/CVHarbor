@@ -1,8 +1,6 @@
 import React from 'react'
 import FlexBox from '../../cv_components/flexbox/FlexBox'
 
-{/* <input type='checkbox' id='current' onChange={()=>setCurrentEducation(prev=>!prev)} name='end_date'/>
-<label htmlFor="current" style={{'marginLeft': '1rem'}}>Currently studying</label> */}
 function CheckBoxLabel(props) {
   return (
     <FlexBox direction='row'>

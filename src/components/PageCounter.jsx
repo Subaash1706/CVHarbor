@@ -17,8 +17,7 @@ function PageCounter() {
 
         }
     }, [ totalPagesCount ])
-    // l(translateDistance, translateDistance-(10.5 * (+currentPageIndex)))
-    // l(currentPage, currentPageIndex, totalPagesCount)
+
   return (
     <section className={`${classes.pageSelectorSection} pageCounterSection`}>
         <div className={classes.currentPage} style={{transform: `translate(0px, -${(10.5*(+currentPageIndex))}rem)`}}>

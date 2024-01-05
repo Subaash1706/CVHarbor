@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import classes from './skills.module.css';
 import FlexBox from '../../cv_components/flexbox/FlexBox';
-import SkillsInput from './SkillsInput';
 import Grid from '../../cv_components/grid/Grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { bioActions } from '../../store/store';
 import LabelInput from '../form_components/LabelInput';
 import ExistingData from '../existing_data/ExistingData';
-import NextContainer from '../NextContainer';
 
 function Skills(props) {
   const { log: l } = console
@@ -61,22 +59,16 @@ function Skills(props) {
     dispatch(bioActions.replaceBioData({ 'skills': copy }))
     }
   }
-  function togglePage(e){
-    if(e.target.id==='previous') dispatch(bioActions.updateCurrentPage({direction: '-1'}))
-    else if(e.target.id==='next') dispatch(bioActions.updateCurrentPage({direction: '1'}))
-  }
   return (
     <div>
       <div className='formSectionContainer'>
         <FlexBox direction='row' style={{justifyContent: 'space-between'}}>
           <div className='heading'>Skills</div>
           <center>
-            <button onClick={addMoreHandler} className='addmoreButton'>+</button>
-            <button onClick={submitHandler} disabled={!value.length > 0} className='proceedButton'>Save</button>
           </center>
         </FlexBox>
         { (existing || skillsFromStore.flat().length > 0) && <ExistingData dataArray={ skillsFromStore.flat() } onClick={ valueModifyHandler }/>}
-        <Grid balanced = {true} cols={3} style={{gap: '8px'}}>
+        <Grid balanced = {true} cols={2} style={{gap: '8px'}}>
         { 
             Array.from({ length: skillCount }, (_, ind)=>{
               return <LabelInput 
@@ -90,6 +82,10 @@ function Skills(props) {
               />})
         }
         </Grid>
+        <FlexBox width='100'>
+            <button onClick={addMoreHandler} className='addmoreButton'>Add more</button>
+            <button onClick={submitHandler} disabled={!value.length > 0} className='proceedButton'>Save</button>
+        </FlexBox>
       </div>
     </div>
 
