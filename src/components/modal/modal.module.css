@@ -94,7 +94,7 @@ input[type='checkbox']{
     margin-left: 1rem;
 }
 .illustrationContainer{
-    background-image: url(../../assets/gifs/skipGif.gif);
+    background-image: url(../../../public/assets/gifs/skipGif.gif);
     width: 30vw;
     aspect-ratio: 1;
     background-size: 125%;
