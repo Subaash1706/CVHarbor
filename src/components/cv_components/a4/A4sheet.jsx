@@ -23,7 +23,7 @@ const A4sheet = React.forwardRef((props, ref)=>{
         { props.children}
         {hoveredState  && <div className='printablePreview'>
           <div onClick={()=>{setPreviewState(prev=>!prev)}}>
-            <img src={svgImage} alt="" />
+              <img src={svgImage} alt="" />
           </div>
         </div>}
     </div>

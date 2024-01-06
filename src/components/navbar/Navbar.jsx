@@ -31,6 +31,7 @@ function Navbar(props) {
       </nav>
           {toggleStatus && <div className={classes.expandedNav}>
             {!!templateNumber && <a className={classes.expandedNavChange} onClick={()=>{dispatch(bioActions.setCurrentTemplate({templateNumber: ''})); setToggleStatus(false)}}>Change template</a>}
+            {!!templateNumber && <a className={classes.expandedNavChange} onClick={()=>props.onPreview(true)}>Preview</a>}
             {!!templateNumber && <a className={classes.expandedNavPrint} onClick={()=>{printHandler(true); setToggleStatus(false)}}>Print</a>}
           </div>}
     </div>

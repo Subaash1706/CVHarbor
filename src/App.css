@@ -170,6 +170,22 @@ input:disabled{
     pointer-events: none;
     cursor: not-allowed;
 }
+#expandedPreviewPortal>div:first-child{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+.a4PreviewClose{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.a4PreviewClose span{
+    font-size: 5rem;
+}
 @keyframes enter {
     0%{
         transform: scale(0, 1);
@@ -232,6 +248,12 @@ input:disabled{
         display: flex;
         flex-direction: column!important;
         justify-content: center;
+        margin-top: 2rem;
+    }
+}
+@media screen and ( width < 740px){
+    .formSectionContainer .heading{
+        font-size:8vw;
     }
 }
 @media print {

@@ -27,6 +27,9 @@ import {harvardFileArray, mitFileArray, modernFileArray} from '../components/ima
 import { current } from '@reduxjs/toolkit'
 
 const Main = React.forwardRef((props, ref)=>{
+  const [ containerPreview, setContainerPreview ] = useState(false)
+  const [ closeThroughProp, setCloseThruProp ] = useState(true)
+  const [ a4Preview, seta4Preview ] = useState(false)
   const [ openModal, setOpenModal ] = useState(false)
   const [ templateSelectionState, setTemplateSelectionState ] = useState(false)
   const [ closeModal, setCloseModal ] = useState(false);
@@ -74,6 +77,27 @@ const Main = React.forwardRef((props, ref)=>{
   useEffect(()=>{
     setTemplateSelectionState(templateNumber)
   }, [ templateNumber ])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (+window.innerWidth < 580) {
+        setContainerPreview(true);
+      } else {
+        setContainerPreview(false);
+      }
+    };
+
+    // Initial call
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   function renderSelectedTemplate(currentTemplate, templateNumber){
       const render = currentTemplate === 'har' ? `har${templateNumber}` : (currentTemplate === 'mit' ? `mit${templateNumber}` : `mod${templateNumber}` )
       if(!!templateNumber){
@@ -111,7 +135,20 @@ const Main = React.forwardRef((props, ref)=>{
         }
       }
   }
+  function handlePreviewClose(stat){
+      if(stat)setCloseThruProp(true)
+      seta4Preview(false)
+      props.onClose(false)
+  }
+useEffect(()=>{
+    if(props.onA4Preview) {
+      seta4Preview(true)
+      setCloseThruProp(false)
+    }
+}, [ props.onA4Preview ])
 
+console.log('close', closeThroughProp)
+console.log('state', a4Preview)
   return (
     <main>
         {
@@ -125,9 +162,20 @@ const Main = React.forwardRef((props, ref)=>{
           <SelectorCarousal imageArray={(currentTemplate==='har' && harvardFileArray)||(currentTemplate==='mit' && mitFileArray)||(currentTemplate==='mod' && modernFileArray)}/>
         }
         {
-          <A4Container>
+           !containerPreview  && <A4Container>
               { renderSelectedTemplate(currentTemplate, templateNumber) }
           </A4Container>
+          }
+          {
+             ((containerPreview) && (!closeThroughProp) && (a4Preview)) && 
+          createPortal( 
+            <div className={classes.a4PreviewContainer}>
+              <A4Container onCloseMobilePreview={handlePreviewClose}>
+                {renderSelectedTemplate(currentTemplate, templateNumber)}
+              </A4Container>
+            </div>, 
+          document.getElementById('expandedPreviewPortal')
+          )
         }
     </main>
   )
