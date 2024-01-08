@@ -41,13 +41,24 @@ const Main = React.forwardRef((props, ref)=>{
   const totalPages = allPagesArray.length
   const currentPageIndex = allPagesArray.findIndex(page=>page===currentPage)
     const componentRef = useRef()
-
+    console.log('ref', componentRef)
     const handlePrint = useReactToPrint({
         content: ()=>componentRef.current,
     })
-    if(!!props.onPrintStatus){   //problem
-      handlePrint()
-    }
+
+    useEffect(()=>{
+      if(!containerPreview){
+          if(!!props.onPrintStatus){
+            handlePrint()
+          }
+      }
+      else{
+        setTimeout(() => {
+          handlePrint()
+        }, 1500);
+      }
+    }, [ props.onPrintStatus ])
+    
       // const classes = { active: props.onNavExpanded ? 'navActive' : 'exit' }
       const toggleClass = []
       if(props.onNavExpanded){
@@ -86,18 +97,16 @@ const Main = React.forwardRef((props, ref)=>{
         setContainerPreview(false);
       }
     };
-
-    // Initial call
+  
     handleResize();
-
-    // Add event listener for window resize
+  
     window.addEventListener('resize', handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  
   function renderSelectedTemplate(currentTemplate, templateNumber){
       const render = currentTemplate === 'har' ? `har${templateNumber}` : (currentTemplate === 'mit' ? `mit${templateNumber}` : `mod${templateNumber}` )
       if(!!templateNumber){
@@ -166,17 +175,12 @@ console.log('state', a4Preview)
               { renderSelectedTemplate(currentTemplate, templateNumber) }
           </A4Container>
           }
-          {
-             ((containerPreview) && (!closeThroughProp) && (a4Preview)) && 
-          createPortal( 
-            <div className={classes.a4PreviewContainer}>
+        {(((containerPreview) && (!closeThroughProp) && (a4Preview)) || props.onPrintStatus) &&  
+        <div  id="expandedPreviewPortal">
               <A4Container onCloseMobilePreview={handlePreviewClose}>
                 {renderSelectedTemplate(currentTemplate, templateNumber)}
               </A4Container>
-            </div>, 
-          document.getElementById('expandedPreviewPortal')
-          )
-        }
+        </div>}
     </main>
   )
 })
