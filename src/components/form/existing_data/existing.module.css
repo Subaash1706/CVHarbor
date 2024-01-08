@@ -42,3 +42,13 @@
     background: rgba(195, 195, 195, 0.765);
     
 }
+@media screen and ( width<580px) {
+    .editContainer{
+        display: block;
+        position: relative;
+        right: 0;
+    }
+    .editContainer div{
+        
+    }
+}

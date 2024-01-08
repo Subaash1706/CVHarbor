@@ -91,7 +91,7 @@ function Xp(props) {
             </FlexBox>
                 <label htmlFor="accomplishments" style={{'textAlign': 'left', margin: '8px 0px', 'fontSize': '1.05rem'}}>Accomplishments / Achievements (optional)</label>
                 <textarea name="accomplishments" id="accomplishments" placeholder='Hit Enter for new bullet point' onChange={valueChangeHandler} value={value.accomplishments && value.accomplishments} className='textArea'></textarea>
-            <FlexBox>
+            <FlexBox width='100'>
                 <button onClick={submitHandler} disabled={!validity} className='proceedButton'>Save</button>
             </FlexBox>
         </FlexBox>}

@@ -61,8 +61,8 @@ function SelectiveAdditional(props) {
     }
   return ( <>
             { (existing || currentPageFromStore.length > 0) && <ExistingData onAddMore={addMoreHandler} target={currentPageLowerCase} onClick={existingItemHandler}/>} 
-            { (addMore || nextAdditional || !currentPageFromStore.length > 0) && <FlexBox key={`${currentPage}`} style={{'alignItems': 'start', marginBottom: '2rem', padding: '2rem', 'borderRadius': '10px'}}>
-                    <LabelInput id='name' labelName='Add a heading' name='name' onChange={(e)=>valueChangeHandler(e, currentPage)} value={value.name}/>
+            { (addMore || nextAdditional || !currentPageFromStore.length > 0) && <FlexBox key={`${currentPage}`} style={{'alignItems': 'start', marginBottom: '2rem', 'borderRadius': '10px'}} width='100'>
+                    <LabelInput id='name' labelName='Add a heading' name='name' onChange={(e)=>valueChangeHandler(e, currentPage)} value={value.name} placeholder='Name/Title'/>
                     <LabelDate id='date' labelName='Month and Year of completion' name="date" onChange={(e)=>valueChangeHandler(e, currentPage)} value={value.date && value.date}/>
                     <textarea style={{width: '100%', height: '8rem', resize: 'none', padding: '8px', fontSize: '1.25rem'}}  placeholder='Enter a brief description. Use new line to create points' onChange={(e)=>valueChangeHandler(e, currentPage)} id='description' className='textArea' value={value.description && value.description}></textarea>
                 <FlexBox width='100'>
